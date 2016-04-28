@@ -18,8 +18,34 @@ class BookFactory
     id++;
   }
 
+  public void newBook(String title)
+  {
+    Book temp = new Book(title, id, "NOT AVAILABLE");
+    books.add(temp);
+
+    id++;
+  }
+
   public Book getBook(int index)
   {
     return books.get(index);
+  }
+
+  public Book getBook(String title)
+  {
+    for (int i = 0; i < books.size(); i++)
+    {
+      Book temp = books.get(i);
+
+      if(temp.getTitle() == title)
+      {
+        return temp;
+      }
+    }
+
+    System.out.println("Error 404 : Book not found");
+
+    Book empty = new Book();
+    return empty;
   }
 }

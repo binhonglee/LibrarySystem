@@ -1,5 +1,6 @@
 class Book
 {
+  private String title;
   private int id;
   //( AVAILABLE || RENTED || RESERVED || NOT AVAILABLE)
   private String status;
@@ -9,6 +10,23 @@ class Book
   {
     this.id = id;
     this.status = status;
+  }
+
+  public Book(String title, int id, String status)
+  {
+    this.title = title;
+    this.id = id;
+    this.status = status;
+  }
+
+  public String getTitle()
+  {
+    if (title!=null)
+    {
+      return title;
+    } else {
+      return "UNDEFINED";
+    }
   }
 
   public String getStatus()
