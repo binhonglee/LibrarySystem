@@ -1,3 +1,8 @@
+/*
+ *  Written by : Bin Hong Lee
+ *  Last edited : 4/27/2016
+ */
+
 import java.util.*;
 
 class BookFactory
@@ -12,7 +17,7 @@ class BookFactory
 
   public void newBook()
   {
-    Book temp = new Book(id, "NOT AVAILABLE");
+    Book temp = new Book(id);
     books.add(temp);
 
     id++;
@@ -20,7 +25,7 @@ class BookFactory
 
   public void newBook(String title)
   {
-    Book temp = new Book(title, id, "NOT AVAILABLE");
+    Book temp = new Book(title, id);
     books.add(temp);
 
     id++;
