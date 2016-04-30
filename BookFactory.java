@@ -15,20 +15,24 @@ class BookFactory
     id = 0;
   }
 
-  public void newBook()
+  public Book newBook()
   {
     Book temp = new Book(id);
     books.add(temp);
 
     id++;
+
+    return temp;
   }
 
-  public void newBook(String title)
+  public Book newBook(String title)
   {
     Book temp = new Book(title, id);
     books.add(temp);
 
     id++;
+
+    return temp;
   }
 
   public Book getBook(int index)
@@ -50,7 +54,6 @@ class BookFactory
 
     System.out.println("Error 404 : Book not found");
 
-    Book empty = new Book();
-    return empty;
+    return newBook();
   }
 }

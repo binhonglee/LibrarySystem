@@ -83,19 +83,35 @@ class Book
   public double overdueFine(int[] currentDay)
   {
     double fine;
+    boolean monChange = false;
 
-    if(currentDay[0] > dueDate[0] || currentDay[1] > (dueDate[1] + 1))
+    while(currentDay[0] > dueDate[0])
     {
-      return 5;
+      currentDay[0]--;
+      currentDay[1]+=12;
     }
-    else if(currentDay[1] > dueDate[1])
+
+    while(currentDay[1] > dueDate[1])
     {
-      fine = (double)(currentDay[2] + 30 - dueDate[2]) * 0.25;
+      int mon = currentDay[1] % 12;
+
+      if(mon == 1 || mon == 3 || mon == 5 || mon == 7 || mon == 8 || mon == 10 || mon == 12)
+      {
+        currentDay[2]+=31;
+      }
+      else if(mon == 2)
+      {
+        currentDay[2]+=28;
+      }
+      else
+      {
+        currentDay[2]+=30;
+      }
+
+      currentDay[1]--;
     }
-    else
-    {
-      fine = (double)(currentDay[2] - dueDate[2]) * 0.25;
-    }
+
+    fine = (double)(currentDay[2] - dueDate[2]) * 0.25;
 
     if(fine > 5)
     {
