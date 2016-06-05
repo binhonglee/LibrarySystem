@@ -1,6 +1,6 @@
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 4/27/2016
+ *  Last edited : 5/31/2016
  */
 
 import java.util.*;
@@ -15,16 +15,6 @@ class BookFactory
     id = 0;
   }
 
-  public Book newBook()
-  {
-    Book temp = new Book(id);
-    books.add(temp);
-
-    id++;
-
-    return temp;
-  }
-
   public Book newBook(String title)
   {
     Book temp = new Book(title, id);
@@ -37,7 +27,14 @@ class BookFactory
 
   public Book getBook(int index)
   {
-    return books.get(index);
+    try
+    {
+      return books.get(index);
+    }
+    catch (Exception e)
+    {
+      throw new NullPointerException();
+    }
   }
 
   public Book getBook(String title)
@@ -52,8 +49,6 @@ class BookFactory
       }
     }
 
-    System.out.println("Error 404 : Book not found");
-
-    return newBook();
+    throw new NullPointerException();
   }
 }

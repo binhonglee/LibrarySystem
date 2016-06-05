@@ -1,10 +1,11 @@
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 4/27/2016
+ *  Last edited : 5/31/2016
  */
 
 class Main
 {
+  Exception BookNotFound = new Exception("Error 404 : Book not found");
   static BookFactory books = new BookFactory();
 
   public static void main(String[] args)
@@ -12,8 +13,4 @@ class Main
 
   }
 
-  public static void newBook()
-  {
-    books.newBook();
-  }
 }

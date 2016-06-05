@@ -1,6 +1,6 @@
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 4/27/2016
+ *  Last edited : 5/31/2016
  */
 
 class Book
@@ -84,6 +84,11 @@ class Book
   {
     double fine;
     boolean monChange = false;
+
+    if(currentDay[0] < dueDate[0] || (currentDay[0] == dueDate[0] && currentDay[1] < dueDate[1]) || (currentDay[0] == dueDate[0] && currentDay[1] == dueDate[1] && currentDay[2] <= dueDate[2]))
+    {
+      return 0;
+    }
 
     while(currentDay[0] > dueDate[0])
     {
