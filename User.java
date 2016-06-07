@@ -3,12 +3,14 @@
  *  Last edited : 6/4/2016
  */
 
+ import java.util.*;
+
 class User
 {
   private String name;
   private int id;
   private int limit;
-  private List<int> books = new ArrayList<int>();
+  private List<Integer> books = new ArrayList<Integer>();
 
   public User(String name, int id, int limit)
   {
@@ -31,18 +33,20 @@ class User
   {
     if (books.size() < limit)
     {
-      if (bookStatus)
-      {
-        return true;
-      }
+      return true;
     }
 
     return false;
   }
 
+  public List<Integer> bookStatus()
+  {
+    return books;
+  }
+
   public boolean borrowNewBook(int id)
   {
-    if (status)
+    if (status())
     {
       books.add(id);
       return true;
@@ -51,5 +55,19 @@ class User
     {
       return false;
     }
+  }
+
+  public boolean returnBook(int id)
+  {
+    for (int i = 0; i < books.size(); i++)
+    {
+      if (books.get(i) == id)
+      {
+        books.remove(i);
+        return true;
+      }
+    }
+
+    return false;
   }
 }
