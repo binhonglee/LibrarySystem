@@ -1,9 +1,9 @@
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 6/4/2016
+ *  Last edited : 6/6/2016
  */
 
- import java.util.*;
+import java.util.*;
 
 class User
 {
@@ -22,6 +22,11 @@ class User
   public String getName()
   {
     return name;
+  }
+
+  public int getId()
+  {
+    return id;
   }
 
   public void setName()
