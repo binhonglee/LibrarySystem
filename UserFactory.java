@@ -7,7 +7,7 @@ import java.util.*;
 
 class UserFactory
 {
-  private List<User> users = new List<User>;
+  private List<User> users = new ArrayList<User>();
   private int id;
 
   public UserFactory()
@@ -15,7 +15,7 @@ class UserFactory
     id = 0;
   }
 
-  public User newUser(String name; int limit)
+  public User newUser(String name, int limit)
   {
     User temp = new User(name, id, limit);
     users.add(temp);
@@ -55,15 +55,15 @@ class UserFactory
     throw new NullPointerException();
   }
 
-  public void update(User old, User new)
+  public void update(User oldUser, User newUser)
   {
     for (int i = 0; i < users.size(); i++)
     {
       User temp = users.get(i);
 
-      if(temp.getId() == old.getId())
+      if(temp.getId() == oldUser.getId())
       {
-        users.set(i, new);
+        users.set(i, newUser);
       }
     }
   }
