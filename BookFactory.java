@@ -1,6 +1,6 @@
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/31/2016
+ *  Last edited : 6/8/2016
  */
 
 import java.util.*;
@@ -50,5 +50,18 @@ class BookFactory
     }
 
     throw new NullPointerException();
+  }
+
+  public void update(Book newBook)
+  {
+    for (int i = 0; i < books.size(); i++)
+    {
+      Book temp = books.get(i);
+
+      if(temp.getId() == newBook.getId())
+      {
+        books.set(i, newBook);
+      }
+    }
   }
 }
