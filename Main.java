@@ -3,7 +3,7 @@
  *  Last edited : 5/31/2016
  */
 
-import java.util.Date
+import java.util.Date;
 
 class Main
 {
@@ -105,7 +105,7 @@ class Main
 
   public static int[] currentDay()
   {
-    int[] currentDay = new int[3]();
+    int[] currentDay = new int[3];
 
     currentDay[0] = date.getYear();
     currentDay[1] = date.getMonth();
