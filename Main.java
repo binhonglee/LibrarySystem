@@ -107,8 +107,8 @@ class Main
   {
     int[] currentDay = new int[3];
 
-    currentDay[0] = date.getYear();
-    currentDay[1] = date.getMonth();
+    currentDay[0] = date.getYear() + 1900;
+    currentDay[1] = date.getMonth() + 1;
     currentDay[2] = date.getDate();
 
     return currentDay;
