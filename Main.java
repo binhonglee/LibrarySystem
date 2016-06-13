@@ -1,6 +1,6 @@
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/31/2016
+ *  Last edited : 6/12/2016
  */
 
 import java.util.Date;
@@ -15,6 +15,24 @@ class Main
   public static void main(String[] args)
   {
 
+  }
+
+  public static boolean borrowBook(User user, Book book)
+  {
+    User newUser = user;
+
+    if(book.getStatus() == "AVAILABLE" && newUser.status())
+    {
+      book.rent(calDueDate(10));
+      newUser.borrowNewBook(book.getId());
+
+      books.update(book);
+      users.update(user, newUser);
+
+      return true;
+    }
+
+    return false;
   }
 
   public static boolean returnBook(User user, Book book)
