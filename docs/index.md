@@ -4,7 +4,8 @@
 - [Book](#book)
 - [Book Factory](#book-factory)
 - [User](#user)
-- [User Factory](#user-factoru)
+- [User Factory](#user-factory)
+
 
 # Main
 
@@ -64,6 +65,7 @@
 | User(String name, int id, int limit) | Create a new User with given name, id and limit |
 
 ## Functions
+
 | Return | Method | Description |
 |:-------|:-------|:------------|
 | String | getName() | Returns the name of the user |
@@ -83,6 +85,7 @@
 | UserFactory() | Creates a new empty factory |
 
 ## Functions
+
 | Return | Method | Description |
 |:-------|:-------|:------------|
 | User | newUser(String name, int limit) | Creates a new user and returns the created user |
