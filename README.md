@@ -2,6 +2,8 @@
 
 ##### NOTE: Still not working as intended.
 
+Documentations can be found [here](https://binhonglee.github.io/LibrarySystem/).
+
 ---
 
 ## Dependencies
