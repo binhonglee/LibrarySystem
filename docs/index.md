@@ -1,12 +1,12 @@
 # Documentations
 
-| Table of Content |
-| :--------------- |
-| [Main](#main) |
-| [Book](#book) |
-| [Book Factory](#book-factory) |
-| [User](#user) |
-| [User Factory](#user-factory)|
+## Table of Content
+
+- [Main](#main)
+- [Book](#book)
+- [Book Factory](#book-factory)
+- [User](#user)
+- [User Factory](#user-factory)
 
 # Main
 
