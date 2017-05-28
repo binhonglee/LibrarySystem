@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 6/12/2016
+ *  Last edited : 5/27/2017
  */
 
 import java.util.Date;
@@ -15,7 +15,7 @@ class Main
 
   public static void main(String[] args)
   {
-
+    new MainGUI().setVisible(true);
   }
 
   public static boolean borrowBook(User user, Book book)
