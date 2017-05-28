@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/31/2016
+ *  Last edited : 5/28/2017
  */
 
 class Book
@@ -29,6 +29,14 @@ class Book
     this.title = title;
     this.id = id;
     this.status = "AVAILABLE";
+  }
+
+  public Book(int id, String title, String status, int[] dueDate)
+  {
+    this.title = title;
+    this.id = id;
+    this.status = status;
+    this.dueDate = dueDate;
   }
 
   //Getters and setters

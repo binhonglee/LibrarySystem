@@ -1,13 +1,19 @@
 package libsys;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+@SuppressWarnings({"unchecked", "serial"})
+
 public class MainGUI extends javax.swing.JFrame
 {
-  public MainGUI()
+  Handler handler;
+
+  public MainGUI(Handler handler)
   {
+    this.handler = handler;
     initComponents();
   }
-
-  @SuppressWarnings("unchecked")
 
   //GEN-BEGIN:initComponents
   private void initComponents()
@@ -36,6 +42,13 @@ public class MainGUI extends javax.swing.JFrame
     bookMgtLabel.setText("Book Management");
 
     bookSearchBtn.setText("Search");
+    bookSearchBtn.addActionListener(new ActionListener()
+    {
+      public void actionPerformed(ActionEvent evt)
+      {
+        bookSearchBtnActionPerformed(evt);
+      }
+    });
 
     bookTitle.setText("Title : ");
 
@@ -173,6 +186,14 @@ public class MainGUI extends javax.swing.JFrame
   }
   //GEN-END:initComponents
 
+  private void bookSearchBtnActionPerformed(ActionEvent evt)
+  {
+    Book thisBook = handler.books.getBook(0);
+    bookID.setText("ID : " + thisBook.getId());
+    bookTitle.setText("Title : " + thisBook.getTitle());
+    bookStatus.setText("Status : " + thisBook.getStatus());
+  }
+
   //GEN-BEGIN:variables
   private javax.swing.JLabel bookID;
   private javax.swing.JLabel bookMgtLabel;
@@ -192,4 +213,6 @@ public class MainGUI extends javax.swing.JFrame
   private javax.swing.JTextField userSearch;
   private javax.swing.JButton userSearchBtn;
   //GEN-END:variables
+
+
 }
