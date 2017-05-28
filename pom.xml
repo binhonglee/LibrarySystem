@@ -14,6 +14,13 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org</groupId>
+      <artifactId>json</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/src/main/resources/json.jar</systemPath>
+    </dependency>
   </dependencies>
   <build>
         <plugins>
@@ -32,6 +39,16 @@
               <configuration>
                 <source>1.6</source>
                 <target>1.6</target>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>2.20</version>
+              <configuration>
+                <additionalClasspathElements>
+                  <additionalClasspathElement>/home/binhong/Git/LibrarySystem/lib/json.jar</additionalClasspathElement>
+                </additionalClasspathElements>
               </configuration>
             </plugin>
         </plugins>

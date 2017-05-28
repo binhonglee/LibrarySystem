@@ -8,8 +8,8 @@ Documentations can be found [here](https://binhonglee.github.io/LibrarySystem/).
 
 ## Dependencies
 
-1. Maven Apache
-2. Any JDK
+1.  [Maven Apache](https://maven.apache.org/)
+2.  [Oracle JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 ## Use
 
