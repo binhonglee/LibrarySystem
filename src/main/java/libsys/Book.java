@@ -74,7 +74,7 @@ class Book
   public boolean rent(int[] dueDate)
   {
     //Check if the book is available to be rented
-    if(status != "AVAILABLE")
+    if(!"AVAILABLE".equals(status))
     {
       return false;
     }

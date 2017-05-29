@@ -33,9 +33,7 @@ class UserFactory
       FileInputStream in = new FileInputStream(userFilename);
       JSONObject obj = new JSONObject(new JSONTokener(in));
       String [] ids = JSONObject.getNames(obj);
-      System.out.println();
 
-      System.out.println("Parsing data into ArrayList...");
       for (int i = 0; i < ids.length; i++)
       {
         JSONObject jsonUser = obj.getJSONObject(ids[i]);
@@ -52,12 +50,38 @@ class UserFactory
 
         users.add(new User(name, id, limit, books));
       }
-      System.out.println();
       in.close();
     }
     catch (Exception ex)
     {
       System.out.println("Exception importing from json: " + ex.getMessage());
+    }
+
+    id = getUser(users.size()-1).getId() + 1;
+  }
+
+  public void toJsonFile(String userFilename)
+  {
+    try
+    {
+      PrintWriter out = new PrintWriter(userFilename);
+      JSONObject usersObj = new JSONObject();
+      for (int i = 0; i < users.size(); i++)
+      {
+         User user = users.get(i);
+         JSONObject userObj = new JSONObject();
+         userObj.put("Name", user.getName());
+         userObj.put("Limit", user.getLimit());
+         userObj.put("Books", user.bookStatus());
+         usersObj.put(Integer.toString(user.getId()), userObj);
+      }
+      out.println(usersObj.toString(4));
+      out.close();
+    }
+    catch (Exception e)
+    {
+      System.out.println("exception: " + e.getMessage());
+      e.printStackTrace();
     }
   }
 

@@ -12,7 +12,7 @@ class Handler
   Exception BookNotFound = new Exception("Error 404 : Book not found");
   BookFactory books = new BookFactory();
   UserFactory users = new UserFactory();
-  Calendar cal;
+  Calendar cal = Calendar.getInstance();
 
   public Handler()
   {
@@ -22,14 +22,15 @@ class Handler
   public boolean borrowBook(User user, Book book)
   {
     User newUser = user;
+    Book newBook = book;
 
-    if(book.getStatus() == "AVAILABLE" && newUser.status())
+    if(("AVAILABLE".equals(book.getStatus())) && newUser.status() && newBook.rent(calDueDate(10)) && newUser.borrowNewBook(book.getId()))
     {
-      book.rent(calDueDate(10));
-      newUser.borrowNewBook(book.getId());
-
-      books.update(book);
+      books.update(book, newBook);
       users.update(user, newUser);
+
+      books.toJsonFile("books.json");
+      users.toJsonFile("users.json");
 
       return true;
     }
@@ -40,13 +41,17 @@ class Handler
   public boolean returnBook(User user, Book book)
   {
     User newUser = user;
+    Book newBook = book;
 
     if(newUser.returnBook(book.getId()))
     {
       book.returned();
 
-      books.update(book);
+      books.update(book, newBook);
       users.update(user, newUser);
+
+      books.toJsonFile("books.json");
+      users.toJsonFile("users.json");
 
       return true;
     }
@@ -127,9 +132,9 @@ class Handler
   {
     int[] currentDay = new int[3];
 
-    currentDay[0] = cal.get(Calendar.YEAR) + 1900;
+    currentDay[0] = cal.get(Calendar.YEAR);
     currentDay[1] = cal.get(Calendar.MONTH) + 1;
-    currentDay[2] = cal.get(Calendar.DAY_OF_MONTH);
+    currentDay[2] = cal.get(Calendar.DATE);
 
     return currentDay;
   }
@@ -141,10 +146,8 @@ class Handler
     for (int i = 0; i < bookIDs.length; i++)
     {
       titlesString += books.getBook(bookIDs[i]).getTitle();
-      titlesString += "; \n";
+      titlesString += "; ";
     }
-
-    System.out.println(titlesString);
 
     return titlesString;
   }

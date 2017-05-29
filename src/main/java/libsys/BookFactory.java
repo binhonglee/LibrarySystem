@@ -30,13 +30,10 @@ class BookFactory
   {
     try
     {
-      System.out.println("Reading data from file...");
       FileInputStream in = new FileInputStream(bookFilename);
       JSONObject obj = new JSONObject(new JSONTokener(in));
       String [] ids = JSONObject.getNames(obj);
-      System.out.println();
 
-      System.out.println("Parsing data into ArrayList...");
       for (int i = 0; i < ids.length; i++)
       {
         JSONObject jsonBook = obj.getJSONObject(ids[i]);
@@ -52,8 +49,6 @@ class BookFactory
         }
         books.add(new Book(id, title, status, dueDate));
       }
-      System.out.println();
-
       in.close();
     }
     catch (Exception ex)
@@ -81,7 +76,6 @@ class BookFactory
       }
       out.println(booksObj.toString(4));
       out.close();
-      System.out.println("Books exported to JSON file.");
     }
     catch (Exception e)
     {
@@ -127,13 +121,13 @@ class BookFactory
     throw new NullPointerException();
   }
 
-  public void update(Book newBook)
+  public void update(Book oldBook, Book newBook)
   {
     for (int i = 0; i < books.size(); i++)
     {
       Book temp = books.get(i);
 
-      if(temp.getId() == newBook.getId())
+      if(temp.getId() == oldBook.getId())
       {
         books.set(i, newBook);
       }

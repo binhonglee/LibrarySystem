@@ -1,19 +1,20 @@
-{"0": {
-    "Status": "RENTED",
-    "Title": "Cracking the Coding Interview",
-    "Due Date": [
-        10,
-        10,
-        2010
-    ]
-},
-"1": {
-  "Status": "RENTED",
-  "Title": "Who was that?",
-  "Due Date": [
-    1,
-    1,
-    1
-  ]
-}
+{
+    "0": {
+        "Status": "RENTED",
+        "Title": "Cracking the Coding Interview",
+        "Due Date": [
+            2017,
+            6,
+            8
+        ]
+    },
+    "1": {
+        "Status": "AVAILABLE",
+        "Title": "Who was that?",
+        "Due Date": [
+            2017,
+            6,
+            8
+        ]
+    }
 }
