@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 6/6/2016
+ *  Last edited : 5/28/2017
  */
 
 import java.util.*;
@@ -20,6 +20,14 @@ class User
     this.limit = limit;
   }
 
+  public User(String name, int id, int limit, ArrayList<Integer> books)
+  {
+    this.name = name;
+    this.id = id;
+    this.limit = limit;
+    this.books = books;
+  }
+
   public String getName()
   {
     return name;
@@ -28,6 +36,11 @@ class User
   public int getId()
   {
     return id;
+  }
+
+  public int getLimit()
+  {
+    return limit;
   }
 
   public void setName()
@@ -45,9 +58,16 @@ class User
     return false;
   }
 
-  public List<Integer> bookStatus()
+  public int[] bookStatus()
   {
-    return books;
+    int[] currentBooks = new int[books.size()];
+
+    for (int i = 0; i < books.size(); i++)
+    {
+      currentBooks[i] = books.get(i).intValue();
+    }
+
+    return currentBooks;
   }
 
   public boolean borrowNewBook(int id)

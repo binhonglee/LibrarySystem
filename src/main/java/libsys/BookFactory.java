@@ -26,12 +26,12 @@ class BookFactory
     id = 0;
   }
 
-  public BookFactory(String jsonFileName)
+  public BookFactory(String bookFilename)
   {
     try
     {
       System.out.println("Reading data from file...");
-      FileInputStream in = new FileInputStream(jsonFileName);
+      FileInputStream in = new FileInputStream(bookFilename);
       JSONObject obj = new JSONObject(new JSONTokener(in));
       String [] ids = JSONObject.getNames(obj);
       System.out.println();
@@ -53,10 +53,40 @@ class BookFactory
         books.add(new Book(id, title, status, dueDate));
       }
       System.out.println();
+
+      in.close();
     }
     catch (Exception ex)
     {
       System.out.println(ex.getMessage());
+    }
+
+    id = getBook(books.size()-1).getId() + 1;
+  }
+
+  public void toJsonFile(String bookFilename)
+  {
+    try
+    {
+      PrintWriter out = new PrintWriter(bookFilename);
+      JSONObject booksObj = new JSONObject();
+      for (int i = 0; i < books.size(); i++)
+      {
+         Book book = books.get(i);
+         JSONObject bookObj = new JSONObject();
+         bookObj.put("Title", book.getTitle());
+         bookObj.put("Status", book.getStatus());
+         bookObj.put("Due Date", book.getDueDate());
+         booksObj.put(Integer.toString(book.getId()), bookObj);
+      }
+      out.println(booksObj.toString(4));
+      out.close();
+      System.out.println("Books exported to JSON file.");
+    }
+    catch (Exception e)
+    {
+      System.out.println("exception: " + e.getMessage());
+      e.printStackTrace();
     }
   }
 

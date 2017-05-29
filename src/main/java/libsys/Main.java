@@ -6,10 +6,14 @@ package libsys;
 
 class Main
 {
+  static String bookFilename = "books.json";
+  static String userFilename = "users.json";
+
   public static void main(String[] args)
   {
     Handler handler = new Handler();
-    handler.books = new BookFactory("books.json");
+    handler.books = new BookFactory(bookFilename);
+    handler.users = new UserFactory(userFilename);
     new MainGUI(handler).setVisible(true);
   }
 }

@@ -60,6 +60,11 @@ class Book
     return id;
   }
 
+  public int[] getDueDate()
+  {
+    return dueDate;
+  }
+
   public void setTitle(String title)
   {
     this.title = title;

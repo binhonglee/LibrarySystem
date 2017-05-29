@@ -1,4 +1,8 @@
 package libsys;
+/*
+ *  Written by : Bin Hong Lee
+ *  Last edited : 5/28/2017
+ */
 
 import java.util.Calendar;
 import org.json.JSONObject;
@@ -9,6 +13,11 @@ class Handler
   BookFactory books = new BookFactory();
   UserFactory users = new UserFactory();
   Calendar cal;
+
+  public Handler()
+  {
+
+  }
 
   public boolean borrowBook(User user, Book book)
   {
@@ -123,5 +132,20 @@ class Handler
     currentDay[2] = cal.get(Calendar.DAY_OF_MONTH);
 
     return currentDay;
+  }
+
+  public String bookIdsToTitlesString(int[] bookIDs)
+  {
+    String titlesString = "";
+
+    for (int i = 0; i < bookIDs.length; i++)
+    {
+      titlesString += books.getBook(bookIDs[i]).getTitle();
+      titlesString += "; \n";
+    }
+
+    System.out.println(titlesString);
+
+    return titlesString;
   }
 }

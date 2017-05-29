@@ -1,10 +1,20 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 6/7/2016
+ *  Last edited : 5/28/2017
  */
 
-import java.util.*;
+ import java.util.List;
+ import java.util.ArrayList;
+ import org.json.JSONString;
+ import org.json.JSONObject;
+ import org.json.JSONTokener;
+ import org.json.JSONArray;
+ import java.io.FileInputStream;
+ import java.io.PrintWriter;
+ import java.io.File;
+ import java.util.Enumeration;
+ import java.io.Serializable;
 
 class UserFactory
 {
@@ -14,6 +24,41 @@ class UserFactory
   public UserFactory()
   {
     id = 0;
+  }
+
+  public UserFactory(String userFilename)
+  {
+    try
+    {
+      FileInputStream in = new FileInputStream(userFilename);
+      JSONObject obj = new JSONObject(new JSONTokener(in));
+      String [] ids = JSONObject.getNames(obj);
+      System.out.println();
+
+      System.out.println("Parsing data into ArrayList...");
+      for (int i = 0; i < ids.length; i++)
+      {
+        JSONObject jsonUser = obj.getJSONObject(ids[i]);
+        int id = Integer.parseInt(ids[i]);
+        String name = jsonUser.getString("Name");
+        int limit = jsonUser.getInt("Limit");
+
+        JSONArray jsonBooks = jsonUser.getJSONArray("Books");
+        ArrayList<Integer> books = new ArrayList<Integer>();
+        for (int j = 0; j < jsonBooks.length(); j++)
+        {
+          books.add(Integer.parseInt(jsonBooks.get(j).toString()));
+        }
+
+        users.add(new User(name, id, limit, books));
+      }
+      System.out.println();
+      in.close();
+    }
+    catch (Exception ex)
+    {
+      System.out.println("Exception importing from json: " + ex.getMessage());
+    }
   }
 
   public User newUser(String name, int limit)
