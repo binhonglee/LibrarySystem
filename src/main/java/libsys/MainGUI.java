@@ -38,6 +38,9 @@ public class MainGUI extends javax.swing.JFrame
         userBooks = new javax.swing.JLabel();
         rentBtn = new javax.swing.JButton();
         returnBtn = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
+        createBookBtn = new javax.swing.JButton();
+        createUserBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,7 +83,7 @@ public class MainGUI extends javax.swing.JFrame
                             .addComponent(bookMgtLabel)
                             .addComponent(bookID)
                             .addComponent(bookDueDate))
-                        .addGap(0, 115, Short.MAX_VALUE)))
+                        .addGap(0, 229, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         bookPanelLayout.setVerticalGroup(
@@ -100,7 +103,7 @@ public class MainGUI extends javax.swing.JFrame
                 .addComponent(bookStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bookDueDate)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Book", bookPanel);
@@ -138,7 +141,7 @@ public class MainGUI extends javax.swing.JFrame
                 returnBtnActionPerformed(evt);
             }
         });
-        rentBtn.setVisible(false);
+        returnBtn.setVisible(false);
 
         javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
         userPanel.setLayout(userPanelLayout);
@@ -159,7 +162,7 @@ public class MainGUI extends javax.swing.JFrame
                             .addComponent(userName)
                             .addComponent(userBooks)
                             .addComponent(userLimit))
-                        .addGap(0, 120, Short.MAX_VALUE))
+                        .addGap(0, 234, Short.MAX_VALUE))
                     .addComponent(returnBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -189,20 +192,42 @@ public class MainGUI extends javax.swing.JFrame
 
         jTabbedPane.addTab("User", userPanel);
 
+        nameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        nameLabel.setText("Welcome to abc Library");
+
+        createBookBtn.setText("Add new book");
+
+        createUserBtn.setText("Add new user");
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(createBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(createUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane)
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createBookBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -219,8 +244,8 @@ public class MainGUI extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,7 +280,7 @@ public class MainGUI extends javax.swing.JFrame
           bookSearchBtnActionPerformed(evt);
         }
     }
-    
+
     private void bookSearchBtnActionPerformed(ActionEvent evt)
     {
         try
@@ -314,8 +339,11 @@ public class MainGUI extends javax.swing.JFrame
     private javax.swing.JButton bookSearchBtn;
     private javax.swing.JLabel bookStatus;
     private javax.swing.JLabel bookTitle;
+    private javax.swing.JButton createBookBtn;
+    private javax.swing.JButton createUserBtn;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JButton rentBtn;
     private javax.swing.JButton returnBtn;
     private javax.swing.JLabel userBooks;
