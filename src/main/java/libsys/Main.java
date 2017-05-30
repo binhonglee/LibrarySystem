@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/28/2017
+ *  Last edited : 5/30/2017
  */
 
 class Main
@@ -12,8 +12,29 @@ class Main
   public static void main(String[] args)
   {
     Handler handler = new Handler();
-    handler.books = new BookFactory(bookFilename);
-    handler.users = new UserFactory(userFilename);
+
+    try
+    {
+      handler.books = new BookFactory(bookFilename);
+    }
+    catch (Exception e)
+    {
+      System.out.println("Book Exception");
+      handler.books = new BookFactory();
+      handler.books.setBookFileName(bookFilename);
+    }
+
+    try
+    {
+      handler.users = new UserFactory(userFilename);
+    }
+    catch (Exception e)
+    {
+      System.out.println("User Exception");
+      handler.users = new UserFactory();
+      handler.users.setUserFileName(userFilename);
+    }
+
     new MainGUI(handler).setVisible(true);
   }
 }

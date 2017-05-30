@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/28/2017
+ *  Last edited : 5/30/2017
  */
 
  import java.util.List;
@@ -20,6 +20,7 @@ class UserFactory
 {
   private List<User> users = new ArrayList<User>();
   private int id;
+  private String userFilename;
 
   public UserFactory()
   {
@@ -57,10 +58,11 @@ class UserFactory
       System.out.println("Exception importing from json: " + ex.getMessage());
     }
 
+    this.userFilename = userFilename;
     id = getUser(users.size()-1).getId() + 1;
   }
 
-  public void toJsonFile(String userFilename)
+  public void toJsonFile()
   {
     try
     {
@@ -85,12 +87,18 @@ class UserFactory
     }
   }
 
+  public void setUserFileName(String userFilename)
+  {
+    this.userFilename = userFilename;
+  }
+
   public User newUser(String name, int limit)
   {
     User temp = new User(name, id, limit);
     users.add(temp);
 
     id++;
+    toJsonFile();
 
     return temp;
   }
@@ -136,5 +144,7 @@ class UserFactory
         users.set(i, newUser);
       }
     }
+
+    toJsonFile();
   }
 }

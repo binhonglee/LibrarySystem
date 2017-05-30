@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/28/2017
+ *  Last edited : 5/30/2017
  */
 
 import java.util.List;
@@ -20,6 +20,7 @@ class BookFactory
 {
   private List<Book> books = new ArrayList<Book>();
   private int id;
+  private String bookFilename;
 
   public BookFactory()
   {
@@ -56,10 +57,11 @@ class BookFactory
       System.out.println(ex.getMessage());
     }
 
+    this.bookFilename = bookFilename;
     id = getBook(books.size()-1).getId() + 1;
   }
 
-  public void toJsonFile(String bookFilename)
+  public void toJsonFile()
   {
     try
     {
@@ -84,12 +86,18 @@ class BookFactory
     }
   }
 
+  public void setBookFileName(String bookFilename)
+  {
+    this.bookFilename = bookFilename;
+  }
+
   public Book newBook(String title)
   {
     Book temp = new Book(title, id);
     books.add(temp);
 
     id++;
+    toJsonFile();
 
     return temp;
   }
@@ -132,5 +140,7 @@ class BookFactory
         books.set(i, newBook);
       }
     }
+
+    toJsonFile();
   }
 }

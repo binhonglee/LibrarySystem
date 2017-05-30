@@ -103,7 +103,7 @@ public class MainGUI extends javax.swing.JFrame
                 .addComponent(bookStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bookDueDate)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Book", bookPanel);
@@ -198,6 +198,11 @@ public class MainGUI extends javax.swing.JFrame
         createBookBtn.setText("Add new book");
 
         createUserBtn.setText("Add new user");
+        createUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createUserBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -222,8 +227,8 @@ public class MainGUI extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBookBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,6 +270,17 @@ public class MainGUI extends javax.swing.JFrame
           bookSearchBtnActionPerformed(evt);
         }
     }//GEN-LAST:event_returnBtnActionPerformed
+
+    private void createUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserBtnActionPerformed
+        NewUserDialog newUserUI = new NewUserDialog(this, true);
+        newUserUI.setVisible(true);
+        
+        if (newUserUI.getReturnStatus() != -1)
+        {
+            userSearch.setText(String.valueOf(handler.users.newUser(newUserUI.getName(), newUserUI.getLimit()).getId()));
+            userSearchBtnActionPerformed(evt);
+        }
+    }//GEN-LAST:event_createUserBtnActionPerformed
 
     private void rentBtnActionPerformed(java.awt.event.ActionEvent evt)
     {

@@ -10,8 +10,8 @@ import org.json.JSONObject;
 class Handler
 {
   Exception BookNotFound = new Exception("Error 404 : Book not found");
-  BookFactory books = new BookFactory();
-  UserFactory users = new UserFactory();
+  BookFactory books;
+  UserFactory users;
   Calendar cal = Calendar.getInstance();
 
   public Handler()
@@ -28,9 +28,6 @@ class Handler
     {
       books.update(book, newBook);
       users.update(user, newUser);
-
-      books.toJsonFile("books.json");
-      users.toJsonFile("users.json");
 
       return true;
     }
@@ -49,9 +46,6 @@ class Handler
 
       books.update(book, newBook);
       users.update(user, newUser);
-
-      books.toJsonFile("books.json");
-      users.toJsonFile("users.json");
 
       return true;
     }

@@ -1,3 +1,5 @@
+*.json
+
 .classpath
 effective.pom
 *.class
@@ -6,6 +8,7 @@ target
 .mtj.tmp/
 
 # Package Files #
+*.jar
 *.war
 *.ear
 
