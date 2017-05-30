@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/28/2017
+ *  Last edited : 5/30/2017
  */
 
 class Book
@@ -23,12 +23,11 @@ class Book
     this.status = "NOT AVAILABLE";
   }
 
-  //Constructor with book title
-  public Book(String title, int id)
+  public Book(String title, int id, String status)
   {
     this.title = title;
     this.id = id;
-    this.status = "AVAILABLE";
+    this.status = status;
   }
 
   public Book(int id, String title, String status, int[] dueDate)

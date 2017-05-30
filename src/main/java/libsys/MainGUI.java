@@ -196,6 +196,11 @@ public class MainGUI extends javax.swing.JFrame
         nameLabel.setText("Welcome to abc Library");
 
         createBookBtn.setText("Add new book");
+        createBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBookBtnActionPerformed(evt);
+            }
+        });
 
         createUserBtn.setText("Add new user");
         createUserBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -281,6 +286,17 @@ public class MainGUI extends javax.swing.JFrame
             userSearchBtnActionPerformed(evt);
         }
     }//GEN-LAST:event_createUserBtnActionPerformed
+
+    private void createBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBookBtnActionPerformed
+        NewBookDialog newBookUI = new NewBookDialog(this, true);
+        newBookUI.setVisible(true);
+        
+        if (newBookUI.getReturnStatus() != -1)
+        {
+            bookSearch.setText(String.valueOf(handler.books.newBook(newBookUI.getName(), newBookUI.getStatus()).getId()));
+            bookSearchBtnActionPerformed(evt);
+        }
+    }//GEN-LAST:event_createBookBtnActionPerformed
 
     private void rentBtnActionPerformed(java.awt.event.ActionEvent evt)
     {

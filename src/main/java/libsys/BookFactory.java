@@ -58,7 +58,7 @@ class BookFactory
     }
 
     this.bookFilename = bookFilename;
-    id = getBook(books.size()-1).getId() + 1;
+    id = books.get(books.size() - 1).getId() + 1;
   }
 
   public void toJsonFile()
@@ -91,9 +91,9 @@ class BookFactory
     this.bookFilename = bookFilename;
   }
 
-  public Book newBook(String title)
+  public Book newBook(String title, String status)
   {
-    Book temp = new Book(title, id);
+    Book temp = new Book(title, id, status);
     books.add(temp);
 
     id++;
@@ -104,13 +104,34 @@ class BookFactory
 
   public Book getBook(int index)
   {
-    try
+    return search(index, 0, books.size() - 1);
+  }
+
+  public Book search(int index, int start, int end)
+  {
+    if (start == end && books.get(start).getId() == index)
     {
-      return books.get(index);
+      return books.get(start);
     }
-    catch (Exception e)
+
+    if (start >= end)
     {
       throw new NullPointerException();
+    }
+
+    int currentId = ((start + end) / 2);
+
+    if (books.get(currentId).getId() == index)
+    {
+      return books.get(currentId);
+    }
+    else if (books.get(currentId).getId() > index)
+    {
+      return search(index, start, currentId - 1);
+    }
+    else
+    {
+      return search(index, currentId + 1, end);
     }
   }
 

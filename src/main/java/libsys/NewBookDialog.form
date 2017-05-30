@@ -28,25 +28,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="createBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                       <Component id="cancelBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="title" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="errorLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
+                      <Component id="title" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="limitLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="statusLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="titleLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nameTxtField" max="32767" attributes="0"/>
-                          <Component id="limitTxtField" max="32767" attributes="0"/>
+                          <Component id="titleTxtField" max="32767" attributes="0"/>
+                          <Component id="statusComboBox" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -60,18 +57,16 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="title" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="errorLbl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nameTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="titleLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="titleTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="limitLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="limitTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="statusLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="statusComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="createBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -87,22 +82,22 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="New User"/>
+        <Property name="text" type="java.lang.String" value="New Book"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="nameLbl">
+    <Component class="javax.swing.JLabel" name="titleLbl">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Name :"/>
+        <Property name="text" type="java.lang.String" value="Title :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="limitLbl">
+    <Component class="javax.swing.JLabel" name="statusLbl">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Limit :"/>
+        <Property name="text" type="java.lang.String" value="Status :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="createBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add user"/>
+        <Property name="text" type="java.lang.String" value="Add book"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createBtnActionPerformed"/>
@@ -116,16 +111,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="nameTxtField">
+    <Component class="javax.swing.JTextField" name="titleTxtField">
     </Component>
-    <Component class="javax.swing.JTextField" name="limitTxtField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="errorLbl">
+    <Component class="javax.swing.JComboBox" name="statusComboBox">
       <Properties>
-        <Property name="text" type="java.lang.String" value="LIMIT MUST BE NUMERICAL!"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel(statusOptions)" type="code"/>
+        </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="errorLbl.setVisible(false);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox()"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
   </SubComponents>
