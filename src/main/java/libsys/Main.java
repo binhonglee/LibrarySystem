@@ -6,8 +6,9 @@ package libsys;
 
 class Main
 {
-  static String bookFilename = "books.json";
-  static String userFilename = "users.json";
+  static Settings settings = new Settings("settings.txt");
+  static String bookFilename = settings.get("Books Filename");
+  static String userFilename = settings.get("Users Filename");
 
   public static void main(String[] args)
   {
@@ -35,6 +36,6 @@ class Main
       handler.users.setUserFileName(userFilename);
     }
 
-    new MainGUI(handler).setVisible(true);
+    new MainGUI(handler, settings).setVisible(true);
   }
 }
