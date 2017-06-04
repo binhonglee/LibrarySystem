@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/28/2017
+ *  Last edited : 6/3/2017
  */
 
 import java.util.*;
@@ -43,9 +43,14 @@ class User
     return limit;
   }
 
-  public void setName()
+  public void setName(String name)
   {
     this.name = name;
+  }
+
+  public void setLimit(int limit)
+  {
+    this.limit = limit;
   }
 
   public boolean status()

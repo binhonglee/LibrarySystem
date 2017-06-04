@@ -10,6 +10,10 @@ public class MainGUI extends javax.swing.JFrame
 {
     Handler handler;
     Settings settings;
+    Book book;
+    User user;
+    boolean bookExist = false;
+    boolean userExist = false;
 
     public MainGUI(Handler handler, Settings settings)
     {
@@ -32,6 +36,7 @@ public class MainGUI extends javax.swing.JFrame
         bookStatus = new javax.swing.JLabel();
         bookID = new javax.swing.JLabel();
         bookDueDate = new javax.swing.JLabel();
+        editBookBtn = new javax.swing.JButton();
         userPanel = new javax.swing.JPanel();
         userMgtLabel = new javax.swing.JLabel();
         userSearch = new javax.swing.JTextField();
@@ -42,6 +47,7 @@ public class MainGUI extends javax.swing.JFrame
         userBooks = new javax.swing.JLabel();
         rentBtn = new javax.swing.JButton();
         returnBtn = new javax.swing.JButton();
+        editUserBtn = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
         createBookBtn = new javax.swing.JButton();
         createUserBtn = new javax.swing.JButton();
@@ -70,6 +76,14 @@ public class MainGUI extends javax.swing.JFrame
 
         bookDueDate.setText("Due Date :");
 
+        editBookBtn.setVisible(false);
+        editBookBtn.setText("Edit");
+        editBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBookBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
         bookPanel.setLayout(bookPanelLayout);
         bookPanelLayout.setHorizontalGroup(
@@ -86,9 +100,12 @@ public class MainGUI extends javax.swing.JFrame
                             .addComponent(bookTitle)
                             .addComponent(bookStatus)
                             .addComponent(bookMgtLabel)
-                            .addComponent(bookID)
-                            .addComponent(bookDueDate))
-                        .addGap(0, 229, Short.MAX_VALUE)))
+                            .addComponent(bookID))
+                        .addGap(0, 214, Short.MAX_VALUE))
+                    .addGroup(bookPanelLayout.createSequentialGroup()
+                        .addComponent(bookDueDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editBookBtn)))
                 .addContainerGap())
         );
         bookPanelLayout.setVerticalGroup(
@@ -107,7 +124,9 @@ public class MainGUI extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bookStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bookDueDate)
+                .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookDueDate)
+                    .addComponent(editBookBtn))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
@@ -148,6 +167,14 @@ public class MainGUI extends javax.swing.JFrame
         });
         returnBtn.setVisible(false);
 
+        editUserBtn.setVisible(false);
+        editUserBtn.setText("Edit");
+        editUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editUserBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
         userPanel.setLayout(userPanelLayout);
         userPanelLayout.setHorizontalGroup(
@@ -160,15 +187,19 @@ public class MainGUI extends javax.swing.JFrame
                         .addComponent(userSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(userSearchBtn))
+                    .addComponent(returnBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(userPanelLayout.createSequentialGroup()
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userMgtLabel)
+                            .addComponent(userName)
+                            .addComponent(userBooks))
+                        .addGap(0, 219, Short.MAX_VALUE))
                     .addGroup(userPanelLayout.createSequentialGroup()
                         .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(userID)
-                            .addComponent(userMgtLabel)
-                            .addComponent(userName)
-                            .addComponent(userBooks)
                             .addComponent(userLimit))
-                        .addGap(0, 234, Short.MAX_VALUE))
-                    .addComponent(returnBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editUserBtn)))
                 .addContainerGap())
         );
         userPanelLayout.setVerticalGroup(
@@ -183,14 +214,17 @@ public class MainGUI extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userLimit)
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(userPanelLayout.createSequentialGroup()
+                        .addComponent(userID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(userLimit))
+                    .addComponent(editUserBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userBooks)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(rentBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnBtn)
                 .addContainerGap())
         );
@@ -228,9 +262,7 @@ public class MainGUI extends javax.swing.JFrame
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(jTabbedPane)
-                        .addContainerGap())
+                    .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(nameLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -239,24 +271,20 @@ public class MainGUI extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(settingsBtn))))
+                        .addComponent(settingsBtn)))
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(createBookBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(createUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(settingsBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createBookBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(settingsBtn))
                 .addContainerGap())
         );
 
@@ -272,33 +300,31 @@ public class MainGUI extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
+    private void settingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsBtnActionPerformed
+        SettingsDialog settingsUI = new SettingsDialog(this, true, settings);
 
-        User thisUser = handler.users.getUser(Integer.parseInt(userSearch.getText()));
-        ReturnDialog toReturnUI = new ReturnDialog(this, true, handler, thisUser.getId());
-        toReturnUI.setVisible(true);
-        int toReturnID = toReturnUI.getReturnStatus();
+        settingsUI.setVisible(true);
 
-        if (toReturnID != -1)
+        if (settingsUI.getReturnStatus() != -1)
         {
-          handler.returnBook(thisUser, handler.books.getBook(toReturnID));
-          userSearchBtnActionPerformed(evt);
-          bookSearchBtnActionPerformed(evt);
+            settings.update(settings.getKey(0), settingsUI.getTitle());
+            settings.update(settings.getKey(1), settingsUI.getUsersFilename());
+            settings.update(settings.getKey(2), settingsUI.getBooksFilename());
+            nameLabel.setText(settingsUI.getTitle());
         }
-    }//GEN-LAST:event_returnBtnActionPerformed
+    }//GEN-LAST:event_settingsBtnActionPerformed
 
     private void createUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserBtnActionPerformed
         NewUserDialog newUserUI = new NewUserDialog(this, true);
         newUserUI.setVisible(true);
-        
+
         if (newUserUI.getReturnStatus() != -1)
         {
             userSearch.setText(String.valueOf(handler.users.newUser(newUserUI.getName(), newUserUI.getLimit()).getId()));
@@ -309,7 +335,7 @@ public class MainGUI extends javax.swing.JFrame
     private void createBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBookBtnActionPerformed
         NewBookDialog newBookUI = new NewBookDialog(this, true);
         newBookUI.setVisible(true);
-        
+
         if (newBookUI.getReturnStatus() != -1)
         {
             bookSearch.setText(String.valueOf(handler.books.newBook(newBookUI.getName(), newBookUI.getStatus()).getId()));
@@ -317,22 +343,35 @@ public class MainGUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_createBookBtnActionPerformed
 
-    private void settingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsBtnActionPerformed
-        SettingsDialog settingsUI = new SettingsDialog(this, true, settings);
+    private void editUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserBtnActionPerformed
+        EditUserDialog editUserDialog = new EditUserDialog(this, true, user, handler.books);
+        editUserDialog.setVisible(true);
         
-        settingsUI.setVisible(true);
-        
-        if (settingsUI.getReturnStatus() != -1)
+        if (editUserDialog.getReturnStatus())
         {
-            settings.update(settings.getKey(0), settingsUI.getTitle());
-            settings.update(settings.getKey(1), settingsUI.getUsersFilename());
-            settings.update(settings.getKey(2), settingsUI.getBooksFilename());
-            nameLabel.setText(settingsUI.getTitle());
+            User newUser = user;
+            user.setName(editUserDialog.getNewName());
+            user.setLimit(editUserDialog.getNewLimit());
         }
-    }//GEN-LAST:event_settingsBtnActionPerformed
+        
+        userSearchBtnActionPerformed(evt);
+    }//GEN-LAST:event_editUserBtnActionPerformed
 
-    private void rentBtnActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
+        User thisUser = handler.users.getUser(Integer.parseInt(userSearch.getText()));
+        ReturnDialog toReturnUI = new ReturnDialog(this, true, handler, thisUser.getId());
+        toReturnUI.setVisible(true);
+        int toReturnID = toReturnUI.getReturnStatus();
+
+        if (toReturnID != -1)
+        {
+            handler.returnBook(thisUser, handler.books.getBook(toReturnID));
+            userSearchBtnActionPerformed(evt);
+            bookSearchBtnActionPerformed(evt);
+        }
+    }//GEN-LAST:event_returnBtnActionPerformed
+
+    private void rentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentBtnActionPerformed
         User thisUser = handler.users.getUser(Integer.parseInt(userSearch.getText()));
         RentDialog toRentUI = new RentDialog(this, true, handler);
         toRentUI.setVisible(true);
@@ -343,8 +382,20 @@ public class MainGUI extends javax.swing.JFrame
           handler.borrowBook(thisUser, handler.books.getBook(toRentID));
           userSearchBtnActionPerformed(evt);
           bookSearchBtnActionPerformed(evt);
+        }    }//GEN-LAST:event_rentBtnActionPerformed
+
+    private void editBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBookBtnActionPerformed
+        EditBookDialog editBookDialog = new EditBookDialog(this, true, book);
+        editBookDialog.setVisible(true);
+        
+        if (editBookDialog.getReturnStatus())
+        {
+            Book newBook = book;
+            book.setTitle(editBookDialog.getNewName());
+            handler.books.update(book, newBook);
         }
-    }
+        bookSearchBtnActionPerformed(evt);
+    }//GEN-LAST:event_editBookBtnActionPerformed
 
     private void bookSearchBtnActionPerformed(ActionEvent evt)
     {
@@ -362,6 +413,9 @@ public class MainGUI extends javax.swing.JFrame
             {
                 bookDueDate.setText("Due date : ");
             }
+            book = thisBook;
+            bookExist = true;
+            editBookBtn.setVisible(true);
         }
         catch (Exception e)
         {
@@ -369,6 +423,8 @@ public class MainGUI extends javax.swing.JFrame
             bookTitle.setText("");
             bookStatus.setText("");
             bookDueDate.setText("");
+            bookExist = false;
+            editBookBtn.setVisible(false);
         }
     }
 
@@ -383,6 +439,9 @@ public class MainGUI extends javax.swing.JFrame
             userBooks.setText("Books : " + handler.bookIdsToTitlesString(thisUser.bookStatus()));
             rentBtn.setVisible(thisUser.status());
             returnBtn.setVisible(thisUser.bookStatus().length > 0);
+            editUserBtn.setVisible(true);
+            user = thisUser;
+            userExist = true;
         }
         catch (Exception e)
         {
@@ -392,6 +451,8 @@ public class MainGUI extends javax.swing.JFrame
             userBooks.setText("");
             rentBtn.setVisible(false);
             returnBtn.setVisible(false);
+            userExist = false;
+            editUserBtn.setVisible(false);
         }
     }
 
@@ -406,6 +467,8 @@ public class MainGUI extends javax.swing.JFrame
     private javax.swing.JLabel bookTitle;
     private javax.swing.JButton createBookBtn;
     private javax.swing.JButton createUserBtn;
+    private javax.swing.JButton editBookBtn;
+    private javax.swing.JButton editUserBtn;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel nameLabel;
