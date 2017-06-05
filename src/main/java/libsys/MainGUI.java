@@ -1,11 +1,14 @@
 package libsys;
+/*
+ *  Written by : Bin Hong Lee
+ *  Last edited : 6/4/2017
+ */
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 
 @SuppressWarnings({"unchecked", "serial"})
-
 public class MainGUI extends javax.swing.JFrame
 {
     Handler handler;
@@ -15,6 +18,11 @@ public class MainGUI extends javax.swing.JFrame
     boolean bookExist = false;
     boolean userExist = false;
 
+    /**
+     * Creates a new MainGUI
+     * @param  handler       Given Handler from Main
+     * @param  settings      Given Settings from Main
+     */
     public MainGUI(Handler handler, Settings settings)
     {
       this.handler = handler;
@@ -314,9 +322,9 @@ public class MainGUI extends javax.swing.JFrame
 
         if (settingsUI.getReturnStatus() != -1)
         {
-            settings.update(settings.getKey(0), settingsUI.getTitle());
-            settings.update(settings.getKey(1), settingsUI.getUsersFilename());
-            settings.update(settings.getKey(2), settingsUI.getBooksFilename());
+            settings.setTitle(settingsUI.getTitle());
+            settings.setUsersFilename(settingsUI.getUsersFilename());
+            settings.setBooksFilename(settingsUI.getBooksFilename());
             nameLabel.setText(settingsUI.getTitle());
         }
     }//GEN-LAST:event_settingsBtnActionPerformed
@@ -338,7 +346,7 @@ public class MainGUI extends javax.swing.JFrame
 
         if (newBookUI.getReturnStatus() != -1)
         {
-            bookSearch.setText(String.valueOf(handler.books.newBook(newBookUI.getName(), newBookUI.getStatus()).getId()));
+            bookSearch.setText(String.valueOf(handler.books.newBook(newBookUI.getTitle(), newBookUI.getStatus()).getId()));
             bookSearchBtnActionPerformed(evt);
         }
     }//GEN-LAST:event_createBookBtnActionPerformed
@@ -346,14 +354,14 @@ public class MainGUI extends javax.swing.JFrame
     private void editUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserBtnActionPerformed
         EditUserDialog editUserDialog = new EditUserDialog(this, true, user, handler.books);
         editUserDialog.setVisible(true);
-        
+
         if (editUserDialog.getReturnStatus())
         {
             User newUser = user;
             user.setName(editUserDialog.getNewName());
             user.setLimit(editUserDialog.getNewLimit());
         }
-        
+
         userSearchBtnActionPerformed(evt);
     }//GEN-LAST:event_editUserBtnActionPerformed
 
@@ -387,7 +395,7 @@ public class MainGUI extends javax.swing.JFrame
     private void editBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBookBtnActionPerformed
         EditBookDialog editBookDialog = new EditBookDialog(this, true, book);
         editBookDialog.setVisible(true);
-        
+
         if (editBookDialog.getReturnStatus())
         {
             Book newBook = book;

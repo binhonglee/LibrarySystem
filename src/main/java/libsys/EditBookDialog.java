@@ -1,7 +1,18 @@
 package libsys;
+/*
+ *  Written by : Bin Hong Lee
+ *  Last edited : 6/4/2017
+ */
 
+@SuppressWarnings({"unchecked", "serial"})
 public class EditBookDialog extends javax.swing.JDialog {
 
+    /**
+     * Create new EditBookDialog
+     * @param  parent java.awt.Frame
+     * @param  modal  boolean
+     * @param  book   Book
+     */
     public EditBookDialog(java.awt.Frame parent, boolean modal, Book book) {
         super(parent, modal);
         initComponents();
@@ -9,7 +20,6 @@ public class EditBookDialog extends javax.swing.JDialog {
         init();
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -113,7 +123,7 @@ public class EditBookDialog extends javax.swing.JDialog {
         statusLbl.setText("Status : " + book.getStatus());
         nameTxtField.setText(book.getTitle());
     }
-    
+
     private void doClose(boolean toReturn)
     {
         if (toReturn)
@@ -124,12 +134,20 @@ public class EditBookDialog extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }
-    
+
+    /**
+     * Returns the name from the nameTxtField
+     * @return new Book name
+     */
     public String getNewName()
     {
         return newName;
     }
-    
+
+    /**
+     * Returns if the user selected "Save" or "Cancel"
+     * @return T:"Save"|F:"Cancel"
+     */
     public boolean getReturnStatus()
     {
         return returnStatus;

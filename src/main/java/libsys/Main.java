@@ -1,15 +1,19 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 6/2/2017
+ *  Last edited : 6/4/2017
  */
 
-class Main
+public class Main
 {
   static Settings settings = new Settings("settings.txt");
   static String bookFilename = settings.get("Books Filename");
   static String userFilename = settings.get("Users Filename");
 
+  /**
+   * Start the applicationn
+   * @param args
+   */
   public static void main(String[] args)
   {
     Handler handler = new Handler();

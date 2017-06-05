@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/28/2017
+ *  Last edited : 6/4/2017
  */
 
 import java.util.Calendar;
@@ -14,11 +14,20 @@ class Handler
   UserFactory users;
   Calendar cal = Calendar.getInstance();
 
+  /**
+   * Creates new empty Handler
+   */
   public Handler()
   {
 
   }
 
+  /**
+   * Given User borrows the given Book
+   * @param  user          User borrowing the Book
+   * @param  book          Book to be borrowed
+   * @return If the borrow operation is successful
+   */
   public boolean borrowBook(User user, Book book)
   {
     User newUser = user;
@@ -35,6 +44,12 @@ class Handler
     return false;
   }
 
+  /**
+   * Given User returns the given Book
+   * @param  user          User returning the Book
+   * @param  book          Book to be returned
+   * @return If the return operation is successful
+   */
   public boolean returnBook(User user, Book book)
   {
     User newUser = user;
@@ -53,6 +68,11 @@ class Handler
     return false;
   }
 
+  /**
+   * Calculating the due date
+   * @param  days          Amount of days to be borrowed
+   * @return Amount of days added to the current day
+   */
   public int[] calDueDate(int days)
   {
     int[] dueDate = currentDay();
@@ -122,7 +142,11 @@ class Handler
     return dueDate;
   }
 
-  public int[] currentDay()
+  /**
+   * Returns the current date in an int array
+   * @return date in ([YYYY][MM][DD]) format
+   */
+  private int[] currentDay()
   {
     int[] currentDay = new int[3];
 
@@ -133,6 +157,11 @@ class Handler
     return currentDay;
   }
 
+  /**
+   * Create a String of all book titles with the given Book ids
+   * @param  bookIDs       Array of Book ids
+   * @return String of book titles seperated with "; "
+   */
   public String bookIdsToTitlesString(int[] bookIDs)
   {
     String titlesString = "";

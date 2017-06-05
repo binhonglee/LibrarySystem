@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/30/2017
+ *  Last edited : 6/4/2017
  */
 
 import java.util.List;
@@ -16,17 +16,25 @@ import java.io.File;
 import java.util.Enumeration;
 import java.io.Serializable;
 
-class UserFactory
+public class UserFactory
 {
   private List<User> users = new ArrayList<User>();
   private int id;
   private String userFilename;
 
+  /**
+   * Create a new empty UserFactory
+   */
   public UserFactory()
   {
     id = 0;
+    userFilename = "users,json";
   }
 
+  /**
+   * Create a new UserFactory and fill it with information from a JSON file
+   * @param  userFilename  Name of the input JSON file
+   */
   public UserFactory(String userFilename)
   {
     try
@@ -52,16 +60,20 @@ class UserFactory
         users.add(new User(name, id, limit, books));
       }
       in.close();
+      id = getUser(users.size()-1).getId() + 1;
     }
     catch (Exception ex)
     {
       System.out.println("Exception importing from json: " + ex.getMessage());
+      id = 0;
     }
 
     this.userFilename = userFilename;
-    id = getUser(users.size()-1).getId() + 1;
   }
 
+  /**
+   * Output the data into a JSON file replacing the input file (or if filename not given, "users.json")
+   */
   public void toJsonFile()
   {
     try
@@ -87,11 +99,21 @@ class UserFactory
     }
   }
 
+  /**
+   * Update the output filename for the object
+   * @param userFilename The new filename
+   */
   public void setUserFileName(String userFilename)
   {
     this.userFilename = userFilename;
   }
 
+  /**
+   * Adds a new User into this class
+   * @param  name          Name of the User
+   * @param  limit         Limit of Book the User can borrow
+   * @return The new User that is just created
+   */
   public User newUser(String name, int limit)
   {
     User temp = new User(name, id, limit);
@@ -103,6 +125,11 @@ class UserFactory
     return temp;
   }
 
+  /**
+   * Looks for the User with the given name
+   * @param  name          Name of the User to be found
+   * @return User with the given name
+   */
   public User getUser(String name)
   {
     for (int i = 0; i < users.size(); i++)
@@ -118,21 +145,56 @@ class UserFactory
     throw new NullPointerException();
   }
 
+  /**
+   * Looks for a User with the given id
+   * @param  index         id of the User to be found
+   * @return User with the given id
+   */
   public User getUser(int index)
   {
-    for (int i = 0; i < users.size(); i++)
-    {
-      User temp = users.get(i);
-
-      if(temp.getId() == index)
-      {
-        return temp;
-      }
-    }
-
-    throw new NullPointerException();
+    return search(index, 0, users.size() - 1);
   }
 
+  /**
+   * Recursive binary search through the array list for the User with the given id
+   * @param  index         id of the User to be found
+   * @param  start         Starting point to search
+   * @param  end           Ending point to search
+   * @return User with the given id
+   */
+  private User search(int index, int start, int end)
+  {
+    if (start == end && users.get(start).getId() == index)
+    {
+      return users.get(start);
+    }
+
+    if (start >= end)
+    {
+      throw new NullPointerException();
+    }
+
+    int currentId = ((start + end) / 2);
+
+    if (users.get(currentId).getId() == index)
+    {
+      return users.get(currentId);
+    }
+    else if (users.get(currentId).getId() > index)
+    {
+      return search(index, start, currentId - 1);
+    }
+    else
+    {
+      return search(index, currentId + 1, end);
+    }
+  }
+
+  /**
+   * Replacing a User in the array list with a new User
+   * @param oldUser User to be replaced
+   * @param newUser User replacing it
+   */
   public void update(User oldUser, User newUser)
   {
     for (int i = 0; i < users.size(); i++)

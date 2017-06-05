@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 5/30/2017
+ *  Last edited : 6/4/2017
  */
 
 import java.util.List;
@@ -16,17 +16,25 @@ import java.io.File;
 import java.util.Enumeration;
 import java.io.Serializable;
 
-class BookFactory
+public class BookFactory
 {
   private List<Book> books = new ArrayList<Book>();
   private int id;
   private String bookFilename;
 
+  /**
+   * Create a new empty BookFactory
+   */
   public BookFactory()
   {
     id = 0;
+    bookFilename = "books.json";
   }
 
+  /**
+   * Create a new BookFactory and fill it with information from a JSON file
+   * @param  bookFilename  Name of the input JSON file
+   */
   public BookFactory(String bookFilename)
   {
     try
@@ -51,16 +59,20 @@ class BookFactory
         books.add(new Book(id, title, status, dueDate));
       }
       in.close();
+      id = books.get(books.size() - 1).getId() + 1;
     }
     catch (Exception ex)
     {
       System.out.println(ex.getMessage());
+      id = 0;
     }
 
     this.bookFilename = bookFilename;
-    id = books.get(books.size() - 1).getId() + 1;
   }
 
+  /**
+   * Output the data into a JSON file replacing the input file (or if filename not given, "books.json")
+   */
   public void toJsonFile()
   {
     try
@@ -86,11 +98,21 @@ class BookFactory
     }
   }
 
+  /**
+   * Update the output filename for the object
+   * @param bookFilename The new filename
+   */
   public void setBookFileName(String bookFilename)
   {
     this.bookFilename = bookFilename;
   }
 
+  /**
+   * Adds a new Book into this class
+   * @param  title         Title of the Book
+   * @param  status        Status of the Book
+   * @return The new Book that is just created
+   */
   public Book newBook(String title, String status)
   {
     Book temp = new Book(title, id, status);
@@ -102,12 +124,24 @@ class BookFactory
     return temp;
   }
 
+  /**
+   * Looks for a Book with the given id
+   * @param  index         id of the Book to be found
+   * @return Book with the given id
+   */
   public Book getBook(int index)
   {
     return search(index, 0, books.size() - 1);
   }
 
-  public Book search(int index, int start, int end)
+  /**
+   * Recursive binary search through the array list for the Book with the given id
+   * @param  index         id of the Book to be found
+   * @param  start         Starting point to search
+   * @param  end           Ending point to search
+   * @return Book with the given id
+   */
+  private Book search(int index, int start, int end)
   {
     if (start == end && books.get(start).getId() == index)
     {
@@ -135,6 +169,11 @@ class BookFactory
     }
   }
 
+  /**
+   * Linear search through the array list for Book with the given Title
+   * @param  title         Title of the Book to be found
+   * @return Book with the given title
+   */
   public Book getBook(String title)
   {
     for (int i = 0; i < books.size(); i++)
@@ -150,8 +189,14 @@ class BookFactory
     throw new NullPointerException();
   }
 
+  /**
+   * Replacing a Book in the array list with a new Book
+   * @param oldBook Book to be replaced
+   * @param newBook Book replacing it
+   */
   public void update(Book oldBook, Book newBook)
   {
+    boolean found = false;
     for (int i = 0; i < books.size(); i++)
     {
       Book temp = books.get(i);
@@ -159,7 +204,13 @@ class BookFactory
       if(temp.getId() == oldBook.getId())
       {
         books.set(i, newBook);
+        found = true;
       }
+    }
+
+    if (!found)
+    {
+      throw new NullPointerException();
     }
 
     toJsonFile();
