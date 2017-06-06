@@ -1,11 +1,12 @@
 language: java
 matrix:
   include:
-    - os: linux
     - os: osx
-jdk:
-  - oraclejdk8
-  - oraclejdk7
+      osx_image: xcode7.2
+    - os: linux
+      jdk:
+        - oraclejdk8
+        - oraclejdk7
 
 script: "mvn cobertura:cobertura"
 
