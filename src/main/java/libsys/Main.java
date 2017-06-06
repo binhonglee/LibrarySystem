@@ -4,6 +4,9 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
+/**
+ * Main class
+ */
 public class Main
 {
   static Settings settings = new Settings("settings.txt");

@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+ * Handles all settings related operations and background processing of SettingsDialog
+ */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class Settings
 {
@@ -46,14 +49,13 @@ public class Settings
   /**
    * Save the settings to the given input file
    */
-  public void toFile()
+  private void toFile()
   {
     try
     {
       PrintWriter out = new PrintWriter(settingsFileName);
-      for (int i = 0; i < keys.size(); i++)
-      {
-        out.println(keys.get(i) + ":" + items.get(keys.get(i)));
+      for (String key : keys) {
+        out.println(key + ":" + items.get(key));
       }
       out.close();
     }
@@ -78,7 +80,7 @@ public class Settings
    * @param  location      Location of the field in the array list
    * @return     The field name
    */
-  public String getKey(int location)
+  String getKey(int location)
   {
     return keys.get(location);
   }
@@ -106,7 +108,7 @@ public class Settings
    * Change the file name for the Users
    * @param newUsersFilename  New file name for Users
    */
-  public void setUsersFilename(String newUsersFilename)
+  void setUsersFilename(String newUsersFilename)
   {
     update("Users Filename", newUsersFilename);
   }
@@ -115,7 +117,7 @@ public class Settings
    * Change the file name for the Books
    * @param newBooksFilename  New file name for Books
    */
-  public void setBooksFilename(String newBooksFilename)
+  void setBooksFilename(String newBooksFilename)
   {
     update("Books Filename", newBooksFilename);
   }

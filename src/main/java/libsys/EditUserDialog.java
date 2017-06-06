@@ -4,6 +4,9 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
+/**
+ * UI for updating information in User
+ */
 @SuppressWarnings({"unchecked", "serial"})
 public class EditUserDialog extends javax.swing.JDialog {
 

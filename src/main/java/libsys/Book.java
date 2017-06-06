@@ -4,6 +4,9 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
+/**
+ * Book object
+ */
 public class Book
 {
   private String title;
@@ -85,7 +88,7 @@ public class Book
    * Returns the due date of the Book
    * @return due date ([yyyy][mm][dd])
    */
-  public int[] getDueDate()
+  int[] getDueDate()
   {
     return dueDate;
   }
@@ -104,7 +107,7 @@ public class Book
    * @param  dueDate       The new due date of the Book
    * @return if renting is successful
    */
-  public boolean rent(int[] dueDate)
+  boolean rent(int[] dueDate)
   {
     //Check if the book is available to be rented
     if(!"AVAILABLE".equals(status))
@@ -122,7 +125,7 @@ public class Book
   /**
    * Return the Book to the shelf
    */
-  public void returned()
+  void returned()
   {
     //Update book status
     status = "AVAILABLE";
@@ -136,7 +139,6 @@ public class Book
   public double overdueFine(int[] currentDay)
   {
     double fine;
-    boolean monChange = false;
 
     if(currentDay[0] < dueDate[0] || (currentDay[0] == dueDate[0] && currentDay[1] < dueDate[1]) || (currentDay[0] == dueDate[0] && currentDay[1] == dueDate[1] && currentDay[2] <= dueDate[2]))
     {

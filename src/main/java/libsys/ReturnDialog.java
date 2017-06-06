@@ -12,6 +12,9 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+/**
+ * UI for User returning a Book
+ */
 @SuppressWarnings({"unchecked", "serial"})
 public class ReturnDialog extends javax.swing.JDialog {
 

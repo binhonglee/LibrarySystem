@@ -4,6 +4,9 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
+/**
+ * UI for updating information in Book
+ */
 @SuppressWarnings({"unchecked", "serial"})
 public class EditBookDialog extends javax.swing.JDialog {
 

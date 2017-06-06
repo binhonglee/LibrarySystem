@@ -12,6 +12,9 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+/**
+ * UI for User renting a Book
+ */
 @SuppressWarnings({"unchecked", "serial"})
 public class RentDialog extends javax.swing.JDialog {
 

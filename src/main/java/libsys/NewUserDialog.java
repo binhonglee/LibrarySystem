@@ -4,6 +4,9 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
+/**
+ * UI for creating a new User
+ */
 @SuppressWarnings({"unchecked", "serial"})
 public class NewUserDialog extends javax.swing.JDialog {
 

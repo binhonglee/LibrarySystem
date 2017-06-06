@@ -6,16 +6,15 @@ package libsys;
 
 import java.util.List;
 import java.util.ArrayList;
-import org.json.JSONString;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.JSONArray;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
-import java.io.File;
-import java.util.Enumeration;
-import java.io.Serializable;
 
+/**
+ * Handles all the Book(s)
+ */
 public class BookFactory
 {
   private List<Book> books = new ArrayList<Book>();
@@ -43,17 +42,15 @@ public class BookFactory
       JSONObject obj = new JSONObject(new JSONTokener(in));
       String [] ids = JSONObject.getNames(obj);
 
-      for (int i = 0; i < ids.length; i++)
-      {
-        JSONObject jsonBook = obj.getJSONObject(ids[i]);
-        int id = Integer.parseInt(ids[i]);
+      for (String id1 : ids) {
+        JSONObject jsonBook = obj.getJSONObject(id1);
+        int id = Integer.parseInt(id1);
         String title = jsonBook.getString("Title");
         String status = jsonBook.getString("Status");
         JSONArray jsonDueDate = jsonBook.getJSONArray("Due Date");
-        int [] dueDate = new int[jsonDueDate.length()];
+        int[] dueDate = new int[jsonDueDate.length()];
 
-        for (int j = 0; j < jsonDueDate.length(); j++)
-        {
+        for (int j = 0; j < jsonDueDate.length(); j++) {
           dueDate[j] = jsonDueDate.optInt(j);
         }
         books.add(new Book(id, title, status, dueDate));
@@ -73,20 +70,18 @@ public class BookFactory
   /**
    * Output the data into a JSON file replacing the input file (or if filename not given, "books.json")
    */
-  public void toJsonFile()
+  void toJsonFile()
   {
     try
     {
       PrintWriter out = new PrintWriter(bookFilename);
       JSONObject booksObj = new JSONObject();
-      for (int i = 0; i < books.size(); i++)
-      {
-         Book book = books.get(i);
-         JSONObject bookObj = new JSONObject();
-         bookObj.put("Title", book.getTitle());
-         bookObj.put("Status", book.getStatus());
-         bookObj.put("Due Date", book.getDueDate());
-         booksObj.put(Integer.toString(book.getId()), bookObj);
+      for (Book book : books) {
+        JSONObject bookObj = new JSONObject();
+        bookObj.put("Title", book.getTitle());
+        bookObj.put("Status", book.getStatus());
+        bookObj.put("Due Date", book.getDueDate());
+        booksObj.put(Integer.toString(book.getId()), bookObj);
       }
       out.println(booksObj.toString(4));
       out.close();
@@ -102,7 +97,7 @@ public class BookFactory
    * Update the output filename for the object
    * @param bookFilename The new filename
    */
-  public void setBookFileName(String bookFilename)
+  void setBookFileName(String bookFilename)
   {
     this.bookFilename = bookFilename;
   }
@@ -113,7 +108,7 @@ public class BookFactory
    * @param  status        Status of the Book
    * @return The new Book that is just created
    */
-  public Book newBook(String title, String status)
+  Book newBook(String title, String status)
   {
     Book temp = new Book(title, id, status);
     books.add(temp);
@@ -176,12 +171,8 @@ public class BookFactory
    */
   public Book getBook(String title)
   {
-    for (int i = 0; i < books.size(); i++)
-    {
-      Book temp = books.get(i);
-
-      if(temp.getTitle() == title)
-      {
+    for (Book temp : books) {
+      if (temp.getTitle().equals(title)) {
         return temp;
       }
     }

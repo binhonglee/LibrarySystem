@@ -4,6 +4,9 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
+/**
+ * UI for updating all the informations in Settings
+ */
 @SuppressWarnings("serial")
 public class SettingsDialog extends javax.swing.JDialog {
 

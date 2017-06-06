@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * Main Graphic User Interface
+ */
 @SuppressWarnings({"unchecked", "serial"})
 public class MainGUI extends javax.swing.JFrame
 {

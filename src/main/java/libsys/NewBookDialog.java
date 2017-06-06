@@ -4,6 +4,9 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
+/**
+ * UI for creating a new Book
+ */
 @SuppressWarnings({"unchecked", "serial", "rawtypes"})
 public class NewBookDialog extends javax.swing.JDialog {
 

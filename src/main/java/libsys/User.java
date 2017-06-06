@@ -6,6 +6,9 @@ package libsys;
 
 import java.util.*;
 
+/**
+ * User object
+ */
 public class User
 {
   private String name;
@@ -92,12 +95,8 @@ public class User
    */
   public boolean status()
   {
-    if (books.size() < limit)
-    {
-      return true;
-    }
+    return books.size() < limit;
 
-    return false;
   }
 
   /**
@@ -110,7 +109,7 @@ public class User
 
     for (int i = 0; i < books.size(); i++)
     {
-      currentBooks[i] = books.get(i).intValue();
+      currentBooks[i] = books.get(i);
     }
 
     return currentBooks;
@@ -121,7 +120,7 @@ public class User
    * @param  id            id of the Book to tbe borrowed
    * @return If the borrowing operation is successful
    */
-  public boolean borrowNewBook(int id)
+  boolean borrowNewBook(int id)
   {
     if (status())
     {
@@ -139,7 +138,7 @@ public class User
    * @param  id            id of the Book to be returned
    * @return If the returning operation is successful
    */
-  public boolean returnBook(int id)
+  boolean returnBook(int id)
   {
     for (int i = 0; i < books.size(); i++)
     {

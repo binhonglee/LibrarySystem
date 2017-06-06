@@ -4,18 +4,18 @@ package libsys;
  *  Last edited : 6/4/2017
  */
 
-import java.util.List;
-import java.util.ArrayList;
-import org.json.JSONString;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.json.JSONArray;
+
 import java.io.FileInputStream;
 import java.io.PrintWriter;
-import java.io.File;
-import java.util.Enumeration;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Handles all the User(s)
+ */
 public class UserFactory
 {
   private List<User> users = new ArrayList<User>();
@@ -28,7 +28,7 @@ public class UserFactory
   public UserFactory()
   {
     id = 0;
-    userFilename = "users,json";
+    userFilename = "users.json";
   }
 
   /**
@@ -43,17 +43,15 @@ public class UserFactory
       JSONObject obj = new JSONObject(new JSONTokener(in));
       String [] ids = JSONObject.getNames(obj);
 
-      for (int i = 0; i < ids.length; i++)
-      {
-        JSONObject jsonUser = obj.getJSONObject(ids[i]);
-        int id = Integer.parseInt(ids[i]);
+      for (String id1 : ids) {
+        JSONObject jsonUser = obj.getJSONObject(id1);
+        int id = Integer.parseInt(id1);
         String name = jsonUser.getString("Name");
         int limit = jsonUser.getInt("Limit");
 
         JSONArray jsonBooks = jsonUser.getJSONArray("Books");
         ArrayList<Integer> books = new ArrayList<Integer>();
-        for (int j = 0; j < jsonBooks.length(); j++)
-        {
+        for (int j = 0; j < jsonBooks.length(); j++) {
           books.add(Integer.parseInt(jsonBooks.get(j).toString()));
         }
 
@@ -74,20 +72,18 @@ public class UserFactory
   /**
    * Output the data into a JSON file replacing the input file (or if filename not given, "users.json")
    */
-  public void toJsonFile()
+  void toJsonFile()
   {
     try
     {
       PrintWriter out = new PrintWriter(userFilename);
       JSONObject usersObj = new JSONObject();
-      for (int i = 0; i < users.size(); i++)
-      {
-         User user = users.get(i);
-         JSONObject userObj = new JSONObject();
-         userObj.put("Name", user.getName());
-         userObj.put("Limit", user.getLimit());
-         userObj.put("Books", user.bookStatus());
-         usersObj.put(Integer.toString(user.getId()), userObj);
+      for (User user : users) {
+        JSONObject userObj = new JSONObject();
+        userObj.put("Name", user.getName());
+        userObj.put("Limit", user.getLimit());
+        userObj.put("Books", user.bookStatus());
+        usersObj.put(Integer.toString(user.getId()), userObj);
       }
       out.println(usersObj.toString(4));
       out.close();
@@ -103,7 +99,7 @@ public class UserFactory
    * Update the output filename for the object
    * @param userFilename The new filename
    */
-  public void setUserFileName(String userFilename)
+  void setUserFileName(String userFilename)
   {
     this.userFilename = userFilename;
   }
@@ -114,7 +110,7 @@ public class UserFactory
    * @param  limit         Limit of Book the User can borrow
    * @return The new User that is just created
    */
-  public User newUser(String name, int limit)
+  User newUser(String name, int limit)
   {
     User temp = new User(name, id, limit);
     users.add(temp);
@@ -132,12 +128,8 @@ public class UserFactory
    */
   public User getUser(String name)
   {
-    for (int i = 0; i < users.size(); i++)
-    {
-      User temp = users.get(i);
-
-      if(temp.getName() == name)
-      {
+    for (User temp : users) {
+      if (temp.getName().equals(name)) {
         return temp;
       }
     }
@@ -150,7 +142,7 @@ public class UserFactory
    * @param  index         id of the User to be found
    * @return User with the given id
    */
-  public User getUser(int index)
+  User getUser(int index)
   {
     return search(index, 0, users.size() - 1);
   }
