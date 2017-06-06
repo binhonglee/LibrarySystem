@@ -100,6 +100,7 @@ public class UserTest extends TestCase
         int[] bookIds = user1.bookStatus();
         assertEquals("User1 is now borrowing Book3", bookIds[0], 3);
         assertFalse("User1 reached the limit", user1.status());
+        assertFalse("User1 fail to borrow another book", user1.borrowNewBook(5));
         assertFalse("User1 failed to return Book2 that was not borrowed", user1.returnBook(2));
         assertTrue("User1 return Book3", user1.returnBook(3));
         assertTrue("User1 can now borrow book", user1.status());

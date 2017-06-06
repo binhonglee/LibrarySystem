@@ -126,7 +126,7 @@ public class UserFactory
    * @param  name          Name of the User to be found
    * @return User with the given name
    */
-  public User getUser(String name)
+  User getUser(String name)
   {
     for (User temp : users) {
       if (temp.getName().equals(name)) {

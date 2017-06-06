@@ -68,11 +68,16 @@ public class BookFactoryTest extends TestCase
      */
     private void outputAndInputTest()
     {
-        String filename = "someTestFile.json";
+        String filename = ".";
+        bookFactory.setBookFileName(filename);
+        bookFactory.toJsonFile();
+        assertFalse("File does not exist", (new File(filename)).exists() && !(new File(filename).isDirectory()));
+        filename = "someTestFile.json";
         bookFactory.setBookFileName(filename);
         bookFactory.toJsonFile();
         BookFactory newBookFactory = new BookFactory(filename);
         assertTrue("newBookFactory : Book title is \"Whole new Book\"", newBookFactory.getBook(0).getTitle().equals("Whole new Book"));
+        assertEquals("newBookFactory : Book id is 0", newBookFactory.getBook("Whole new Book").getId(), 0);
         assertTrue("newBookFactory : Book status is \"AVAILABLE\"", newBookFactory.getBook(0).getStatus().equals("AVAILABLE"));
     }
 
@@ -87,6 +92,28 @@ public class BookFactoryTest extends TestCase
         try
         {
             anotherBookFactory.getBook(20);
+            assert false;
+        }
+        catch (Exception e)
+        {
+            assert true;
+        }
+
+        try
+        {
+            Book someBook = new Book(20);
+            Book anotherBook = someBook;
+            anotherBookFactory.update(someBook, anotherBook);
+            assert false;
+        }
+        catch (Exception e)
+        {
+            assert true;
+        }
+
+        try
+        {
+            anotherBookFactory.getBook(12);
             assert false;
         }
         catch (Exception e)

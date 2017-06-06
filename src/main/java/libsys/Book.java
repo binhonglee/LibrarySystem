@@ -131,11 +131,12 @@ public class Book
     status = "AVAILABLE";
   }
 
-  /**
+  /*
    * Calculate the overdue fine
    * @param  currentDay    Today's date
    * @return Price of the fine
    */
+  /*
   public double overdueFine(int[] currentDay)
   {
     double fine;
@@ -182,4 +183,5 @@ public class Book
       return fine;
     }
   }
+  */
 }

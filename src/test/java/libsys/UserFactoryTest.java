@@ -49,6 +49,7 @@ public class UserFactoryTest extends TestCase
         newUserTest();
         fileIOTest();
         exceptionTest();
+        updateTest();
     }
 
     /**
@@ -72,12 +73,24 @@ public class UserFactoryTest extends TestCase
         assertEquals("Limit of User2 in userFactory is 3", userFactory.getUser(1).getLimit(), 3);
     }
 
+    private void updateTest()
+    {
+        User user1 = userFactory.getUser(0);
+        user1.borrowNewBook(0);
+        user1.borrowNewBook(1);
+        userFactory.update(userFactory.getUser(0), user1);
+    }
+
     /**
      * Test the class in writing to and reading from files
      */
     private void fileIOTest()
     {
-        String filename = "someTestFile.json";
+        String filename = ".";
+        userFactory.setUserFileName(filename);
+        userFactory.toJsonFile();
+        assertFalse("File does not exist", (new File(filename)).exists() && !(new File(filename).isDirectory()));
+        filename = "someTestFile.json";
         userFactory.setUserFileName(filename);
         userFactory.toJsonFile();
         UserFactory newUserFactory = new UserFactory(filename);
@@ -98,6 +111,16 @@ public class UserFactoryTest extends TestCase
         try
         {
             anotherUserFactory.getUser(1);
+            assert false;
+        }
+        catch (Exception e)
+        {
+            assert true;
+        }
+
+        try
+        {
+            anotherUserFactory.getUser("alk;jcnalk");
             assert false;
         }
         catch (Exception e)

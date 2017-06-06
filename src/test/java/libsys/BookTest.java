@@ -108,7 +108,8 @@ public class BookTest extends TestCase
         Book testBook2 = new Book("Test Title", 20, "RESERVED");
         Book testBook3 = new Book(15, "Test Title 2", "RENTED", (new int[]{2019, 3, 23}));
 
-        assertTrue("Book1 id is 10", testBook1.getId() == 10);
+        assertEquals("Book name is \"UNDEFINED\"", testBook1.getTitle(), "UNDEFINED");
+        assertEquals("Book1 id is 10", testBook1.getId(), 10);
         assertEquals("Book1 status is \"NOT AVAILABLE\"", testBook1.getStatus(), "NOT AVAILABLE");
 
         assertEquals("Book2 title is \"Test Title\"", testBook2.getTitle(), "Test Title");

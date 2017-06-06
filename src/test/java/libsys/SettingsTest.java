@@ -36,7 +36,6 @@ public class SettingsTest extends TestCase
     public void testApp()
     {
         constructorTest();
-        setTitleTest();
         setUsersFilenameTest();
         setBooksFilenameTest();
     }
@@ -46,20 +45,32 @@ public class SettingsTest extends TestCase
      */
     private void constructorTest()
     {
-        settings = new Settings("noSuchFile.txt");
+        settings = new Settings(".");
+        settings.setTitle("Failed to save");
+        File file = new File(".");
+        if (file.exists() && !file.isDirectory())
+        {
+            assert false;
+        }
+        else
+        {
+            assert true;
+        }
+        String filename = "noSuchFile.txt";
+        file = new File(filename);
+        if (file.exists())
+        {
+            file.delete();
+        }
+        settings = new Settings(filename);
+        assertEquals("Default size is 3", settings.size(), 3);
         assertEquals("Default title", settings.get(settings.getKey(0)), "Welcome to the library");
         assertEquals("Default users filename", settings.get(settings.getKey(1)), "users.json");
         assertEquals("Default books filename", settings.get(settings.getKey(2)), "books.json");
-    }
-
-    /**
-     * Test the setTitle function
-     */
-    private void setTitleTest()
-    {
-        String newTitle = "New Title";
-        settings.setTitle(newTitle);
-        assertEquals("Set settings title to \"New Title\"", settings.get(settings.getKey(0)), newTitle);
+        settings.setTitle("noSuchFile");
+        assertTrue("noSuchFile.txt is created", file.exists());
+        settings = new Settings(filename);
+        assertEquals("Default title", settings.get(settings.getKey(0)), "noSuchFile");
     }
 
     /**
