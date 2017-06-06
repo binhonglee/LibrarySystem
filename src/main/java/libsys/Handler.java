@@ -108,14 +108,10 @@ class Handler
             date[2]++;
           }
         }
-        else if(date[2] == 28)
+        else
         {
           date[1]++;
           date[2] = 1;
-        }
-        else
-        {
-          date[2]++;
         }
       }
       else if(date[1] == 4 || date[1] == 6 || date[1] == 9 || date[1] == 11)

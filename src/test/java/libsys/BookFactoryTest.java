@@ -113,7 +113,7 @@ public class BookFactoryTest extends TestCase
 
         try
         {
-            anotherBookFactory.getBook(12);
+            anotherBookFactory.getBook("No Such Book");
             assert false;
         }
         catch (Exception e)

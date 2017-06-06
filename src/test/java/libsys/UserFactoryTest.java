@@ -47,9 +47,9 @@ public class UserFactoryTest extends TestCase
     public void testApp()
     {
         newUserTest();
+        updateTest();
         fileIOTest();
         exceptionTest();
-        updateTest();
     }
 
     /**
