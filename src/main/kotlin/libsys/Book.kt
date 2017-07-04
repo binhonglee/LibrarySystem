@@ -45,7 +45,7 @@ class Book
         get
 
     /**
-     * Create new Book with given id (Usually used as placeholders)
+     * @constructor Create new Book with given id (Usually used as placeholders)
      * @param  id            Identification number of the Book
      */
     constructor(id: Int) {
@@ -54,7 +54,7 @@ class Book
     }
 
     /**
-     * Create new Book with given title, id and status (Usually used for new Book creation)
+     * @constructor Create new Book with given title, id and status (Usually used for new Book creation)
      * @param  title         Title of the Book
      * @param  id            Identification number of the Book
      * @param  status        Status of the Book
@@ -66,7 +66,7 @@ class Book
     }
 
     /**
-     * Create new Book with given id, title, status and dueDate (Usually used for initialization from database)
+     * @constructor Create new Book with given id, title, status and dueDate (Usually used for initialization from database)
      * @param  id            Identification number of the Book
      * @param  title         Title of the Book
      * @param  status        Status of the Book
