@@ -1,12 +1,11 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 6/4/2017
+ *  Last edited : 7/4/2017
  */
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Main Graphic User Interface
@@ -15,11 +14,9 @@ import java.util.concurrent.CountDownLatch;
 public class MainGUI extends javax.swing.JFrame
 {
     Handler handler;
-    Settings settings;
+    private Settings settings;
     Book book;
     User user;
-    boolean bookExist = false;
-    boolean userExist = false;
 
     /**
      * Creates a new MainGUI
@@ -425,7 +422,6 @@ public class MainGUI extends javax.swing.JFrame
                 bookDueDate.setText("Due date : ");
             }
             book = thisBook;
-            bookExist = true;
             editBookBtn.setVisible(true);
         }
         catch (Exception e)
@@ -434,7 +430,6 @@ public class MainGUI extends javax.swing.JFrame
             bookTitle.setText("");
             bookStatus.setText("");
             bookDueDate.setText("");
-            bookExist = false;
             editBookBtn.setVisible(false);
         }
     }
@@ -452,7 +447,6 @@ public class MainGUI extends javax.swing.JFrame
             returnBtn.setVisible(thisUser.bookStatus().length > 0);
             editUserBtn.setVisible(true);
             user = thisUser;
-            userExist = true;
         }
         catch (Exception e)
         {
@@ -462,7 +456,6 @@ public class MainGUI extends javax.swing.JFrame
             userBooks.setText("");
             rentBtn.setVisible(false);
             returnBtn.setVisible(false);
-            userExist = false;
             editUserBtn.setVisible(false);
         }
     }

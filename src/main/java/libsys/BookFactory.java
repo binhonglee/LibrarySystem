@@ -124,7 +124,7 @@ public class BookFactory
    * @param  index         id of the Book to be found
    * @return Book with the given id
    */
-  public Book getBook(int index)
+  Book getBook(int index)
   {
     return search(index, 0, books.size() - 1);
   }
@@ -169,10 +169,11 @@ public class BookFactory
    * @param  title         Title of the Book to be found
    * @return Book with the given title
    */
-  public Book getBook(String title)
+  Book getBook(String title)
   {
     for (Book temp : books) {
-      if (temp.getTitle().equals(title)) {
+      if (temp.getTitle().equals(title))
+      {
         return temp;
       }
     }
