@@ -1,7 +1,7 @@
 package libsys;
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 6/4/2017
+ *  Last edited : 7/4/2017
  */
 
 /**
@@ -9,12 +9,12 @@ package libsys;
  */
 public class Main
 {
-  static Settings settings = new Settings("settings.txt");
-  static String bookFilename = settings.get("Books Filename");
-  static String userFilename = settings.get("Users Filename");
+  private static Settings settings = new Settings("settings.txt");
+  private static String bookFilename = settings.get("Books Filename");
+  private static String userFilename = settings.get("Users Filename");
 
   /**
-   * Start the applicationn
+   * Start the application
    * @param args
    */
   public static void main(String[] args)

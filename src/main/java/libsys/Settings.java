@@ -61,7 +61,7 @@ public class Settings
     }
     catch (Exception e)
     {
-      System.out.println(e.getMessage());
+      System.out.println("Invalid output filename");
       setDefault();
     }
   }
