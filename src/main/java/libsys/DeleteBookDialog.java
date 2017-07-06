@@ -8,13 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class DeleteBook extends JDialog {
+public class DeleteBookDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JLabel warningLbl;
 
-    public DeleteBook() {
+    public DeleteBookDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -58,7 +58,7 @@ public class DeleteBook extends JDialog {
     }
 
     public static void main(String[] args) {
-        DeleteBook dialog = new DeleteBook();
+        DeleteBookDialog dialog = new DeleteBookDialog();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
