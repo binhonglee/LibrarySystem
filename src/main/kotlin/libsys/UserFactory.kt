@@ -15,7 +15,8 @@ import java.util.ArrayList
 /**
  * Handles all the User(s)
  */
-class UserFactory {
+class UserFactory
+{
     private val users = ArrayList<User>()
     private var id: Int = 0
     private var userFilename: String? = null
@@ -23,7 +24,8 @@ class UserFactory {
     /**
      * @constructor Create a new empty UserFactory
      */
-    constructor() {
+    constructor()
+    {
         id = 0
         userFilename = "users.json"
     }
@@ -32,13 +34,16 @@ class UserFactory {
      * @constructor Create a new UserFactory and fill it with information from a JSON file
      * @param  userFilename  Name of the input JSON file
      */
-    constructor(userFilename: String) {
-        try {
+    constructor(userFilename: String)
+    {
+        try
+        {
             val `in` = FileInputStream(userFilename)
             val obj = JSONObject(JSONTokener(`in`))
             val ids = JSONObject.getNames(obj)
 
-            for (id1 in ids) {
+            for (id1 in ids)
+            {
                 val jsonUser = obj.getJSONObject(id1)
                 val id = Integer.parseInt(id1)
                 val name = jsonUser.getString("Name")
@@ -54,7 +59,9 @@ class UserFactory {
             }
             `in`.close()
             id = getUser(users.size - 1).id + 1
-        } catch (ex: Exception) {
+        }
+        catch (ex: Exception)
+        {
             println("Exception importing from json: " + ex.message)
             id = 0
         }
@@ -65,11 +72,14 @@ class UserFactory {
     /**
      * Output the data into a JSON file replacing the input file (or if filename not given, "users.json")
      */
-    fun toJsonFile() {
-        try {
+    fun toJsonFile()
+    {
+        try
+        {
             val out = PrintWriter(userFilename!!)
             val usersObj = JSONObject()
-            for (user in users) {
+            for (user in users)
+            {
                 val userObj = JSONObject()
                 userObj.put("Name", user.name)
                 userObj.put("Limit", user.limit)
@@ -78,7 +88,9 @@ class UserFactory {
             }
             out.println(usersObj.toString(4))
             out.close()
-        } catch (e: Exception) {
+        }
+        catch (e: Exception)
+        {
             println("Invalid output filename")
         }
 
@@ -88,7 +100,8 @@ class UserFactory {
      * Update the output filename for the object
      * @param userFilename The new filename
      */
-    fun setUserFileName(userFilename: String) {
+    fun setUserFileName(userFilename: String)
+    {
         this.userFilename = userFilename
     }
 
@@ -99,7 +112,8 @@ class UserFactory {
      *
      * @return The new User that is just created
      */
-    fun newUser(name: String, limit: Int): User {
+    fun newUser(name: String, limit: Int): User
+    {
         val temp = User(name, id, limit)
         users.add(temp)
 
@@ -115,7 +129,8 @@ class UserFactory {
      *
      * @return User with the given name
      */
-    fun getUser(name: String): User {
+    fun getUser(name: String): User
+    {
         users
                 .asSequence()
                 .filter { it.name == name }
@@ -130,7 +145,8 @@ class UserFactory {
      *
      * @return User with the given id
      */
-    fun getUser(index: Int): User {
+    fun getUser(index: Int): User
+    {
         return search(index, 0, users.size - 1)
     }
 
@@ -142,23 +158,55 @@ class UserFactory {
      *
      * @return User with the given id
      */
-    private fun search(index: Int, start: Int, end: Int): User {
-        if (start == end && users[start].id == index) {
+    private fun search(index: Int, start: Int, end: Int): User
+    {
+        if (start == end && users[start].id == index)
+        {
             return users[start]
         }
 
-        if (start >= end) {
+        if (start >= end)
+        {
             throw NullPointerException()
         }
 
         val currentId = (start + end) / 2
 
-        if (users[currentId].id == index) {
+        if (users[currentId].id == index)
+        {
             return users[currentId]
-        } else if (users[currentId].id > index) {
+        }
+        else if (users[currentId].id > index)
+        {
             return search(index, start, currentId - 1)
-        } else {
+        }
+        else
+        {
             return search(index, currentId + 1, end)
+        }
+    }
+
+    fun deleteUser(id: Int): Boolean
+    {
+        try
+        {
+            return users.remove(getUser(id))
+        }
+        catch (e: Exception)
+        {
+            return false
+        }
+    }
+
+    fun deleteUser(user: User): Boolean
+    {
+        try
+        {
+            return users.remove(user)
+        }
+        catch (e: Exception)
+        {
+            return false
         }
     }
 
@@ -167,11 +215,14 @@ class UserFactory {
      * @param oldUser User to be replaced
      * @param newUser User replacing it
      */
-    fun update(oldUser: User, newUser: User) {
-        for (i in users.indices) {
+    fun update(oldUser: User, newUser: User)
+    {
+        for (i in users.indices)
+        {
             val temp = users[i]
 
-            if (temp.id == oldUser.id) {
+            if (temp.id == oldUser.id)
+            {
                 users[i] = newUser
             }
         }

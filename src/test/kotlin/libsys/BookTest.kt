@@ -10,6 +10,11 @@ class BookTest
     private var book1: Book? = null
     private var book2: Book? = null
 
+    init
+    {
+
+    }
+
     /**
      * Set up before testing
      */

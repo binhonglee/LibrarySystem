@@ -2,7 +2,7 @@ package libsys
 
 /*
  *  Written by : Bin Hong Lee
- *  Last edited : 7/4/2017
+ *  Last edited : 7/6/2017
  */
 
 import java.util.ArrayList
@@ -14,7 +14,8 @@ import java.io.PrintWriter
 /**
  * Handles all the Book(s)
  */
-class BookFactory {
+class BookFactory
+{
     private val books = ArrayList<Book>()
     private var id: Int = 0
     private var bookFilename: String? = null
@@ -22,7 +23,8 @@ class BookFactory {
     /**
      * @constructor Create a new empty BookFactory
      */
-    constructor() {
+    constructor()
+    {
         id = 0
         bookFilename = "books.json"
     }
@@ -32,7 +34,8 @@ class BookFactory {
      *
      * @param  bookFilename  Name of the input JSON file
      */
-    constructor(bookFilename: String) {
+    constructor(bookFilename: String)
+    {
         try {
             val `in` = FileInputStream(bookFilename)
             val obj = JSONObject(JSONTokener(`in`))
@@ -114,6 +117,36 @@ class BookFactory {
         toJsonFile()
 
         return temp
+    }
+
+    /**
+     * Deletes the Book with the given id from the class (if found)
+     * @param  id          id of the Book to be deleted
+     *
+     * @return if Book deletion is successful
+     */
+    fun deleteBook(id: Int): Boolean
+    {
+        try
+        {
+            books.removeAt(id)
+            return true
+        }
+        catch(e: Exception)
+        {
+            return false
+        }
+    }
+
+    /**
+     * Deletes the given Book from the class (if found)
+     * @param  book        Book to be deleted
+     *
+     * @return if Book deletion is successful
+     */
+    fun deleteBook(book: Book): Boolean
+    {
+        return books.remove(book)
     }
 
     /**
