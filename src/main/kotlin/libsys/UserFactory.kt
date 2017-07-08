@@ -147,7 +147,14 @@ class UserFactory
      */
     fun getUser(index: Int): User
     {
-        return search(index, 0, users.size - 1)
+        try
+        {
+            return search(index, 0, users.size - 1)
+        }
+        catch (e: Exception)
+        {
+            throw NullPointerException()
+        }
     }
 
     /**
@@ -186,11 +193,11 @@ class UserFactory
         }
     }
 
-    fun deleteUser(id: Int): Boolean
+    fun deleteUser(user: User): Boolean
     {
         try
         {
-            return users.remove(getUser(id))
+            return users.remove(user)
         }
         catch (e: Exception)
         {
@@ -198,11 +205,11 @@ class UserFactory
         }
     }
 
-    fun deleteUser(user: User): Boolean
+    fun  deleteUser(i: Int): Boolean
     {
         try
         {
-            return users.remove(user)
+            return users.remove(getUser(i))
         }
         catch (e: Exception)
         {

@@ -6,7 +6,8 @@ import java.io.File
 /**
  * Test Book related operations
  */
-class UserFactoryTest {
+class UserFactoryTest
+{
     private var userFactory: UserFactory? = null
 
     init
@@ -84,6 +85,11 @@ class UserFactoryTest {
 
         val anotherUserFactory = UserFactory("noSuchFile.json")
         Assert.assertEquals("Check ID of new User of non-existent import file", anotherUserFactory.newUser("Some person", 1).id, 0)
+
+        Assert.assertTrue(userFactory!!.deleteUser(0))
+        Assert.assertFalse(userFactory!!.deleteUser(0))
+        Assert.assertTrue(userFactory!!.deleteUser(user2))
+        Assert.assertFalse(userFactory!!.deleteUser(user2))
 
         try
         {
