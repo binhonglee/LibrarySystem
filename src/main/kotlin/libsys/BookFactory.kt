@@ -129,10 +129,9 @@ class BookFactory
     {
         try
         {
-            books.removeAt(id)
-            return true
+            return books.remove(getBook(id))
         }
-        catch(e: Exception)
+        catch (e: Exception)
         {
             return false
         }

@@ -10,11 +10,6 @@ class BookTest
     private var book1: Book? = null
     private var book2: Book? = null
 
-    init
-    {
-
-    }
-
     /**
      * Set up before testing
      */
@@ -22,6 +17,11 @@ class BookTest
     {
         book1 = Book("Book1", 10, "AVAILABLE")
         book2 = Book("Book2", 12, "NOT AVAILABLE")
+    }
+
+    init
+    {
+
     }
 
     /**

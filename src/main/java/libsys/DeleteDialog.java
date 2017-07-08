@@ -8,8 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class DeleteDialog extends JDialog
-{
+public class DeleteDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -17,41 +16,33 @@ public class DeleteDialog extends JDialog
     private JLabel bookNameLbl;
     private boolean returnStatus;
 
-    public DeleteDialog(String name)
-    {
+    public DeleteDialog(String name) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        buttonOK.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+        buttonOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 onOK();
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
         });
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent e)
-            {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
                 onCancel();
             }
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener()
-        {
+        contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
@@ -61,27 +52,23 @@ public class DeleteDialog extends JDialog
         bookNameLbl.setText(name + "?");
     }
 
-    private void onOK()
-    {
+    private void onOK() {
         // add your code here
         returnStatus = true;
         dispose();
     }
 
-    private void onCancel()
-    {
+    private void onCancel() {
         // add your code here if necessary
         returnStatus = false;
         dispose();
     }
 
-    public boolean getReturnStatus()
-    {
+    public boolean getReturnStatus() {
         return returnStatus;
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         DeleteDialog dialog = new DeleteDialog("SomeBook or SomeUser");
         dialog.setVisible(true);
         System.exit(0);
@@ -127,7 +114,7 @@ public class DeleteDialog extends JDialog
         panel3.add(warningLbl, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         bookNameLbl = new JLabel();
         bookNameLbl.setFont(new Font(bookNameLbl.getFont().getName(), bookNameLbl.getFont().getStyle(), 20));
-        bookNameLbl.setText("{Book Name}");
+        bookNameLbl.setText("{Name} ?");
         panel3.add(bookNameLbl, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
