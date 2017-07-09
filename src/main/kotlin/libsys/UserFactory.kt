@@ -193,23 +193,28 @@ class UserFactory
         }
     }
 
+    /**
+     * Deletes the given User from the class (if found)
+     * @param  user        User to be deleted
+     *
+     * @return if User deletion is successful
+     */
     fun deleteUser(user: User): Boolean
     {
-        try
-        {
-            return users.remove(user)
-        }
-        catch (e: Exception)
-        {
-            return false
-        }
+        return users.remove(user)
     }
 
-    fun  deleteUser(i: Int): Boolean
+    /**
+     * Deletes the User with the given id from the class (if found)
+     * @param  id          id of the User to be deleted
+     *
+     * @return if User deletion is successful
+     */
+    fun  deleteUser(id: Int): Boolean
     {
         try
         {
-            return users.remove(getUser(i))
+            return users.remove(getUser(id))
         }
         catch (e: Exception)
         {
