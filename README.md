@@ -1,6 +1,7 @@
 # Library System
 
-[![Build Status](https://travis-ci.org/binhonglee/LibrarySystem.svg?branch=master)](https://travis-ci.org/binhonglee/LibrarySystem)
+[![TravisCI Status](https://travis-ci.org/binhonglee/LibrarySystem.svg?branch=master)](https://travis-ci.org/binhonglee/LibrarySystem)
+[![Drone Status](https://drone.binhong.me/api/badges/binhong/LibrarySystem/status.svg?branch=master)](https://drone.binhong.me/binhong/LibrarySystem)
 [![codecov](https://codecov.io/gh/binhonglee/LibrarySystem/branch/master/graph/badge.svg)](https://codecov.io/gh/binhonglee/LibrarySystem)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/binhonglee/LibrarySystem/blob/master/LICENSE)
 
