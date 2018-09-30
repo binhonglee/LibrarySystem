@@ -2,6 +2,7 @@ language: java
 matrix:
   include:
     - os: osx
+      jdk: oraclejdk8
     - os: linux
       jdk: oraclejdk8
 
